@@ -1,0 +1,37 @@
+@import "./Cores.css";
+#body{
+   background-color: #F4F5F8;
+    }
+  
+    .collapse{
+        background-color: #364A65;
+    }
+    .navbar{
+        height: 90px;
+        padding: 20px;
+        background-color: #364A65;
+    }
+    .Logo{
+        margin-left: 2em;
+        margin-right: 2em;
+        object-fit: cover;
+    }
+    .nav-link{
+        font-size: 15px;
+    }
+    
+    .rounded{
+      width: 25%;
+      transform: rotate(350deg);
+      box-shadow: 10px 5px 5px rgb(141, 140, 140);
+    }
+    h1{
+        display:inline-block;
+        align-items: center;
+        color: #364A65;
+        margin-top: 220px;
+    }
+    .error{
+font-size: xx-large;
+font-size: 100px;
+    }

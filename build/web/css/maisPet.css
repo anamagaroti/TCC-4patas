@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+body{
+    background-color: #EDD4AB;
+}
+.body{   
+    display: grid;
+    justify-content: center;
+
+}
+.tudo{  
+    display: grid;
+    justify-items: center;
+    width: 500px;
+    background-color: rgb(94, 50, 20);
+    padding-left: 10px;
+    padding-bottom: 30px;
+    border: 2px solid black;
+    border-radius: 15px 0px 10px;
+    
+    color: #fff;
+}
+img{  
+    border-radius: 10px;
+    width: 144px;
+}
+.text{
+   font-family: 'Montserrat', sans-serif;
+}
