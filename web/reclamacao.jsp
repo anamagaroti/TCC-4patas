@@ -1,3 +1,4 @@
+<%@page import="model.Pessoa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,12 +7,22 @@
         <title>Reclamação usuário</title>
     </head>
     <body>
-        <form action="action">
+        <%
+            Pessoa usuario = (Pessoa) session.getAttribute("usuario");
+
+            if (usuario == null) {
+                response.sendRedirect("login_cadastro.jsp");
+            }
+        %>
+        <form action="CadastrarReclamacao" method="post">
             <div>
                 <h1>Relatar um problema</h1>
-                <textarea id="reclamacoes" name="reclamacao" rows="25" cols="60" placeholder="Descreva brevemente o que aconteceu"></textarea>
+                <input name="idreclamacao" id="idreclamacao" hidden/>
+                <input name="idcliente" value="<%=usuario.getIdPessoa()%>" hidden/>
+                <textarea id="reclamacoes" name="reclamacao" rows="25" cols="60" 
+                    placeholder="Descreva brevemente o que aconteceu"></textarea>
                 <div>
-                    <button>Enviar relato</button>
+                    <button type="submit">Enviar relato</button>
                 </div>
             </div> 
         </form>

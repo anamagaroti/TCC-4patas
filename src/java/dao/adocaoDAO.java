@@ -5,38 +5,32 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import model.Adocao;
 import model.Cliente;
-import model.Funcionario;
 import model.Pet;
 
-        public class adocaoDAO implements DAOGenerica{
-            
-      
-        private final Connection conexao;
-        public adocaoDAO()throws SQLException, ClassNotFoundException  {
-         conexao = Conexao.abrirConexao();
-        }
+public class adocaoDAO implements DAOGenerica {
+
+    private final Connection conexao;
+
+    public adocaoDAO() throws SQLException, ClassNotFoundException {
+        conexao = Conexao.abrirConexao();
+    }
 
     @Override
     public void cadastrar(Object objeto) throws SQLException {
-    String sql = "call gravarAdocao(?,?,?,?,?,?)";
-       Adocao adocao = (Adocao) objeto;
+        String sql = "call cadastrarAdocao(?,?,?)";
+        Adocao adocao = (Adocao) objeto;
         PreparedStatement stmt = null;
         try {
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, adocao.getIdAdocao());
-            stmt.setDate(2, new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(adocao.getDataAdocao()).getTime()));
-            stmt.setTime(3, new java.sql.Time(new SimpleDateFormat("HH:mm:ss").parse(adocao.getHorarioAdocao()).getTime()));
-            stmt.setInt(4, adocao.getPet().getIdPet());
-            stmt.setInt(5, adocao.getFuncionario().getIdPessoa());
-            stmt.setInt(6, adocao.getCliente().getIdPessoa());
+            stmt.setInt(2, adocao.getPet().getIdPet());
+            stmt.setInt(3, adocao.getCliente().getIdCliente());
             stmt.execute();
-        } catch (SQLException | ParseException ex) {
+        } catch (SQLException ex) {
             throw new SQLException("Erro ao adotar");
         } finally {
             Conexao.encerrarConexao(conexao, stmt);
@@ -56,10 +50,7 @@ import model.Pet;
             while (rs.next()) {
                 adocao = new Adocao(
                         rs.getInt("idAdocao"),
-                        new SimpleDateFormat("yyyy-MM-dd").format(rs.getDate("dataAdocao")),
-                        new SimpleDateFormat("HH:mm:ss").format(rs.getTime("horarioAdocao")),
                         (Pet) new PetDAO().consultar(rs.getInt("idPet")),
-                        (Funcionario) new FuncionarioDAO().consultar(rs.getInt("idFuncionario")),
                         (Cliente) new ClienteDAO().consultar(rs.getInt("idCliente"))
                 );
             }
@@ -69,11 +60,11 @@ import model.Pet;
             Conexao.encerrarConexao(conexao, stmt, rs);
         }
         return adocao;
-    }    
+    }
 
     @Override
     public List<Object> listar() throws SQLException {
-    String sql = "select * from adocao";
+        String sql = "select * from adocao";
         List<Object> lista = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -83,10 +74,7 @@ import model.Pet;
             while (rs.next()) {
                 Adocao adocao = new Adocao(
                         rs.getInt("idAdocao"),
-                        new SimpleDateFormat("yyyy-MM-dd").format(rs.getDate("dataAdocao")),
-                        new SimpleDateFormat("HH:mm:ss").format(rs.getTime("horarioAdocao")),
                         (Pet) new PetDAO().consultar(rs.getInt("idPet")),
-                        (Funcionario) new FuncionarioDAO().consultar(rs.getInt("idFuncionario")),
                         (Cliente) new ClienteDAO().consultar(rs.getInt("idCliente"))
                 );
                 lista.add(adocao);
@@ -96,7 +84,8 @@ import model.Pet;
         } finally {
             Conexao.encerrarConexao(conexao, stmt, rs);
         }
-        return lista;    }
+        return lista;
+    }
 
     @Override
     public void excluir(int codigo) throws SQLException {
@@ -110,6 +99,6 @@ import model.Pet;
             throw new SQLException("Erro ao excluir adoção");
         } finally {
             Conexao.encerrarConexao(conexao, stmt);
-        }    
+        }
     }
 }

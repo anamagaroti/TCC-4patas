@@ -4,16 +4,19 @@
 background-color: var(--fundo);
 }
 .row{
-margin: 0 5em 5em auto;
+margin: 0 6em  6em auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
 }
 .col{
   margin-top: 20px;
   margin-bottom: 0px;
-  width: 22em;
+    width: 22em;
 
 }
 .collapse{
     background-color: var(--Nav);
+
 }
 .navbar{
     height: 90px;
@@ -21,10 +24,24 @@ margin: 0 5em 5em auto;
     position: fixed;
     margin-bottom: 50px;
 }
+.Link_logo{
+position: absolute;
+padding-right: 200px;
+z-index: 2;
+color: transparent;
+}
+.Link_logo:hover{
+  color: transparent;
+}
+svg{
+  cursor: pointer;
+}
 .Logo{
-    margin-left: 2.8em;
+  cursor: pointer;
     margin-right: 2em;
-    object-fit: cover;
+width: 15%;
+min-width: 15%;
+z-index: 1;
 }
 .nav-link{
     font-size: 15px;
@@ -41,10 +58,10 @@ border-radius: 10px;
   /* background: #000; */
   width: 100%;
   height: 100%;
-  opacity: 0.3;
+  
   position: absolute;
   border-radius: 20px;
-  z-index: 5; 
+  z-index: 9; 
 }
  .d-block{
     height:22em;
@@ -59,12 +76,9 @@ border-radius: 10px;
     object-fit: cover;
  }
 /*btn-entrar*/
-.btn{
+.btn.btn-primary{
+  background-color: var(--Detalhes);
   border: var(--Detalhes);
-}
-
-.btn-todos{
-    background-color: var(--Detalhes);
 }
   /* buscar */
 
@@ -111,9 +125,10 @@ div#staticBackdrop.modal.fade.show{
  margin-top: 10em;
 margin: 0 auto;
 margin-top: 6em;
+z-index: 1;
 }
 .carousel-indicators{
-  z-index: 8;
+  z-index: 1;
 }
 .btn-toolbar{
   width: 279px; 
@@ -143,10 +158,18 @@ margin-top: 6em;
   border-color: var(--Detalhes);
   color: var(--branco);
 }
+.btn_todos{
+  background-color: var(--Detalhes);
+  margin: var(--Detalhes);
+  color: var(--branco);
+}
 .navegar{
-margin-left: 36em;
+margin: 0 auto;
   width: 9em;
   }
+svg{
+    color: var(--branco);
+}
 .pagination{
   color: var(--Detalhes);
   border-radius: 0px;
@@ -171,3 +194,4 @@ color: #727272;
 #BackEnd:hover{
   background-color: #803E17 ;
 }
+

@@ -6,8 +6,5 @@
         <title>Pedido Adoção</title>
     </head>
     <body>
-        
-        
-        
     </body>
 </html>

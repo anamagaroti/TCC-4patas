@@ -5,12 +5,10 @@ import java.io.File;
 public class Cliente extends Pessoa{
 
     private int idCliente;
-    private String imagem;
-    private String nomeImg;
 
-    public Cliente(int idCliente, String imagem, String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa, String senhaPessoa, String logouPessoa) {
-        super(nomePessoa, cpfPessoa,  dataNascimentoPessoa, cepPessoa, cidadePessoa, bairroPessoa, ruaPessoa, numeroPessoa, complementoPessoa, estadoPessoa, telefonePessoa, emailPessoa, generoPessoa, senhaPessoa, logouPessoa);
-        this.imagem = imagem;
+    //1
+    public Cliente(int idCliente, String nomeImg, String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa, String senhaPessoa, String logouPessoa) {
+        super(nomeImg, nomePessoa, cpfPessoa,  dataNascimentoPessoa, cepPessoa, cidadePessoa, bairroPessoa, ruaPessoa, numeroPessoa, complementoPessoa, estadoPessoa, telefonePessoa, emailPessoa, generoPessoa, senhaPessoa, logouPessoa);
         this.idCliente = idCliente;
     }
     
@@ -18,19 +16,24 @@ public class Cliente extends Pessoa{
         super("","","","","","","","","","","","","");
     }
  
+    //3
     public Cliente(int idCliente, String nomeImg, String nomePessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa) {
-        super(nomePessoa, dataNascimentoPessoa, cepPessoa, cidadePessoa, bairroPessoa, ruaPessoa, numeroPessoa, complementoPessoa, estadoPessoa, telefonePessoa, emailPessoa, generoPessoa);
+        super(nomeImg, nomePessoa, dataNascimentoPessoa, cepPessoa, cidadePessoa, bairroPessoa, ruaPessoa, numeroPessoa, complementoPessoa, estadoPessoa, telefonePessoa, emailPessoa, generoPessoa);
         this.idCliente = idCliente;
-        this.nomeImg = nomeImg;
+    }
+    
+    //4
+    public Cliente(File filePath, String nomeImg) {
+        super(filePath, nomeImg);
     }
 
-        public Cliente(File filePath, String nomeImg) {
-        this.imagem = imagem;
-        this.nomeImg = nomeImg;
+    @Override
+    public String getTelefonePessoa(String string) {
+        return super.getTelefonePessoa(string); 
     }
 
     public Cliente(int idCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.idCliente = idCliente;
     }
     
     public int getIdCliente() {
@@ -40,21 +43,12 @@ public class Cliente extends Pessoa{
     public void setIdCliente(int idCliente){
         this.idCliente = idCliente;
     }
-        public String getImagem() {
-        return imagem;
+
+    @Override
+    public String getNomePessoa(String string) {
+        return super.getNomePessoa(string);    
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
-    public String getNomeImg() {
-        return nomeImg;
-    }
-
-    public void setNomeImg(String nomeImg) {
-        this.nomeImg = nomeImg;
-    }
 }
     
     

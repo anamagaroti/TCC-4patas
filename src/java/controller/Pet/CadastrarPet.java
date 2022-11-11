@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cliente;
 import model.Pet;
 
 @MultipartConfig
@@ -22,6 +23,7 @@ public class CadastrarPet extends HttpServlet {
         
         try {
             int idPet = request.getParameter("idpet").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idpet"));
+            int idCliente = Integer.parseInt(request.getParameter("idCliente"));
             String nomePet = request.getParameter("nomepet");
             String racaPet = request.getParameter("racapet");
             String idadePet = request.getParameter("idadepet");
@@ -34,7 +36,7 @@ public class CadastrarPet extends HttpServlet {
             request.getRequestDispatcher("imagem").include(request, response);
             String nomeImg = (String) request.getAttribute("nomeImg");
             
-           Pet pet = new Pet(idPet, nomeImg, nomePet, racaPet, idadePet, especiePet, coresPet, sexoPet, portePet, observacoes);
+           Pet pet = new Pet(idPet, new Cliente(idCliente), nomeImg, nomePet, racaPet, idadePet, especiePet, coresPet, sexoPet, portePet, observacoes);
             
            PetDAO petDAO = new PetDAO();
             

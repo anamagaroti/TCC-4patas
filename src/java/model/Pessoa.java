@@ -1,7 +1,11 @@
 package model;
 
+import java.io.File;
+
 public class Pessoa {
     int idPessoa;
+    private String imagem;
+    private String nomeImg;
     private String nomePessoa;
     private String cpfPessoa;  
     private String dataNascimentoPessoa;
@@ -18,7 +22,27 @@ public class Pessoa {
     private String senhaPessoa;
     private String logouPessoa;
 
-    public Pessoa(String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa, String senhaPessoa, String logouPessoa) {
+    //3 funcionario
+     public Pessoa(int idPessoa, String nomeImg, String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa) {
+        this.idPessoa = idPessoa;
+        this.nomeImg = nomeImg;
+        this.nomePessoa = nomePessoa;
+        this.cpfPessoa = cpfPessoa;
+        this.dataNascimentoPessoa = dataNascimentoPessoa;
+        this.cepPessoa = cepPessoa;
+        this.cidadePessoa = cidadePessoa;
+        this.bairroPessoa = bairroPessoa;
+        this.ruaPessoa = ruaPessoa;
+        this.numeroPessoa = numeroPessoa; 
+        this.complementoPessoa = complementoPessoa; 
+        this.estadoPessoa = estadoPessoa;     
+        this.telefonePessoa = telefonePessoa;
+        this.emailPessoa = emailPessoa;
+        this.generoPessoa = generoPessoa;
+    }
+    //1 funcionario e cliente
+    public Pessoa(String nomeImg, String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa, String senhaPessoa, String logouPessoa) {
+        this.nomeImg = nomeImg;
         this.nomePessoa = nomePessoa;
         this.cpfPessoa = cpfPessoa;
         this.dataNascimentoPessoa = dataNascimentoPessoa;
@@ -36,7 +60,10 @@ public class Pessoa {
         this.logouPessoa = logouPessoa;
     }
     
-    public Pessoa(String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa) {
+    //PessoaDAO
+    public Pessoa(int idPessoa, String nomeImg, String nomePessoa, String cpfPessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa, String senhaPessoa, String logouPessoa) {
+        this.idPessoa = idPessoa;
+        this.nomeImg = nomeImg;
         this.nomePessoa = nomePessoa;
         this.cpfPessoa = cpfPessoa;
         this.dataNascimentoPessoa = dataNascimentoPessoa;
@@ -50,16 +77,22 @@ public class Pessoa {
         this.telefonePessoa = telefonePessoa;
         this.emailPessoa = emailPessoa;
         this.generoPessoa = generoPessoa;
+        this.senhaPessoa = senhaPessoa;
+        this.logouPessoa = logouPessoa;
     }
     
-    public Pessoa(String nomePessoa, String cpfPessoa, String emailPessoa, String generoPessoa){
+    //2 funcionario 
+    public Pessoa(String nomeImg, String nomePessoa, String cpfPessoa, String emailPessoa, String generoPessoa){
+        this.nomeImg = nomeImg;
         this.nomePessoa = nomePessoa;
         this.cpfPessoa = cpfPessoa;
         this.emailPessoa = emailPessoa;
         this.generoPessoa = generoPessoa;
     }
 
-    public Pessoa(String nomePessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa) {
+    //3 cliente
+    public Pessoa(String nomeImg, String nomePessoa, String dataNascimentoPessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa) {
+        this.nomeImg = nomeImg;
         this.nomePessoa = nomePessoa;
         this.dataNascimentoPessoa = dataNascimentoPessoa;
         this.cepPessoa = cepPessoa;
@@ -74,32 +107,43 @@ public class Pessoa {
         this.generoPessoa = generoPessoa;
     }
     
-     public Pessoa(int idPessoa, String nomePessoa, String cepPessoa, String cidadePessoa, String bairroPessoa, String ruaPessoa, String numeroPessoa, String complementoPessoa, String estadoPessoa, String telefonePessoa, String emailPessoa, String generoPessoa) {
-        this.idPessoa = idPessoa;
-        this.nomePessoa = nomePessoa;
-        this.cepPessoa = cepPessoa;
-        this.cidadePessoa = cidadePessoa;
-        this.bairroPessoa = bairroPessoa;
-        this.ruaPessoa = ruaPessoa;
-        this.numeroPessoa = numeroPessoa;
-        this.complementoPessoa = complementoPessoa;
-        this.estadoPessoa = estadoPessoa;
-        this.telefonePessoa = telefonePessoa;
-        this.emailPessoa = emailPessoa;
-        this.generoPessoa = generoPessoa;
+    //4 cliente e funcionario 
+    public Pessoa(File filePath, String nomeImg) {
+        this.nomeImg = nomeImg;
     }
     
     public Pessoa() {
+    
     }
- 
+
     public int getIdPessoa() {
         return idPessoa;
     }
-
+    
     public void setIdPessoa(int codigoPessoa) {
         this.idPessoa = codigoPessoa;
     }
 
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public String getNomeImg() {
+        return nomeImg;
+    }
+
+    public void setNomeImg(String nomeImg) {
+        this.nomeImg = nomeImg;
+    }
+
+    public String getNomePessoa(String string) {
+        return nomePessoa;
+    }
+    
     public String getNomePessoa() {
         return nomePessoa;
     }
@@ -194,6 +238,10 @@ public class Pessoa {
 
     public void setGeneroPessoa(String generoPessoa) {
         this.generoPessoa = generoPessoa;
+    }
+    
+    public String getTelefonePessoa(String string) {
+        return telefonePessoa;
     }
     
     public String getTelefonePessoa() {

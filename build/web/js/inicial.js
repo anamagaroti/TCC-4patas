@@ -18,7 +18,10 @@ document.getElementById('gato').classList.remove('btn_todos');
         }
 //btn-outline
     
-            
+
+function alert(){
+    alert("Realmente deseja sair da sua conta ?");
+}
         
             
    

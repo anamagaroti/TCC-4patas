@@ -1,6 +1,7 @@
 
 package controller.Pet;
 
+import com.google.gson.Gson;
 import dao.PetDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,10 +19,18 @@ public class consultarPet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8"); 
-         try{
-        int idPet = Integer.parseInt(request.getParameter("idpet"));
-            PetDAO petdao = new PetDAO();            
-            request.setAttribute("pet", petdao.consultar(idPet));
+         try{            
+            int idPet = Integer.parseInt(request.getParameter("idpet"));                    
+            PetDAO petdao = new PetDAO();      
+            
+           request.setAttribute("pet", petdao.consultar(idPet));
+            
+        //    Gson gson = new Gson();
+        //    String json = gson.toJson(petdao);
+            
+        //    response.setContentType("application/json");
+        //    response.getWriter().print(json);
+            
         } catch (SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagem", ex.getMessage());
         }

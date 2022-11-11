@@ -3,24 +3,17 @@ package model;
 public class Adocao{
 
     private int idAdocao;
-    private String dataAdocao;
-    private String horarioAdocao;
     private Pet pet;    
     private Funcionario funcionario;
     private Cliente cliente;
 
-    public Adocao(int idAdocao, String dataAdocao, String horarioAdocao, Pet pet, Funcionario funcionario, Cliente cliente) {
+    public Adocao(int idAdocao, Pet pet, Cliente cliente) {
         this.idAdocao = idAdocao;
-        this.dataAdocao = dataAdocao;
-        this.horarioAdocao = horarioAdocao;
         this.pet = pet;
-        this.funcionario = funcionario;
         this.cliente = cliente;
     }
-    public Adocao(int idAdocao, String dataAdocao, String horarioAdocao, Pet pet, Funcionario funcionario) {
+    public Adocao(int idAdocao, Pet pet, Funcionario funcionario) {
         this.idAdocao = idAdocao;
-        this.dataAdocao = dataAdocao;
-        this.horarioAdocao = horarioAdocao;
         this.pet = pet;
         this.funcionario = funcionario;
     }
@@ -34,22 +27,6 @@ public class Adocao{
 
     public void setIdAdocao(int idAdocao) {
         this.idAdocao = idAdocao;
-    }
-
-    public String getDataAdocao() {
-        return dataAdocao;
-    }
-
-    public void setDataAdocao(String dataAdocao) {
-        this.dataAdocao = dataAdocao;
-    }
-
-    public String getHorarioAdocao() {
-        return horarioAdocao;
-    }
-
-    public void setHorarioAdocao(String horarioAdocao) {
-        this.horarioAdocao = horarioAdocao;
     }
     
     public Pet getPet() {

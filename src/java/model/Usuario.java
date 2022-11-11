@@ -14,6 +14,11 @@ public class Usuario {
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
     }
+    public Usuario(String emailUsuario, String senhaUsuario) {
+        this.emailUsuario = emailUsuario;
+        this.senhaUsuario = senhaUsuario;
+    }
+    
 
     public int getIdUsuario() {
         return idUsuario;

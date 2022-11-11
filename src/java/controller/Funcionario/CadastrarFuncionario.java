@@ -1,7 +1,9 @@
 package controller.Funcionario;
 
+import TratamentoErros.Erros;
 import model.Funcionario;
 import dao.FuncionarioDAO;
+import dao.PessoaDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Pessoa;
 
 @MultipartConfig
 @WebServlet(name = "CadastrarFuncionario", urlPatterns = {"/CadastrarFuncionario"})
@@ -49,10 +52,11 @@ public class CadastrarFuncionario extends HttpServlet {
             String emailPessoa = request.getParameter("emailPessoa");
             String generoPessoa = request.getParameter("generoPessoa"); 
             String senhaPessoa = request.getParameter("senhaPessoa");
+            String confirmarSenha = request.getParameter("confirmarSenha");
             String cargo = request.getParameter("cargo");
             
             
-             request.getRequestDispatcher("imagem").include(request, response);
+            request.getRequestDispatcher("imagem").include(request, response);
             String nomeImg = (String) request.getAttribute("nomeImg");
             
             Funcionario funcionario = new Funcionario(idFuncionario, nomeImg, nomePessoa, cpfPessoa,  dataNascimentoPessoa, cepPessoa, 
@@ -62,9 +66,21 @@ public class CadastrarFuncionario extends HttpServlet {
             
             FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
             
+            PessoaDAO pessoadao = new PessoaDAO();
+            Pessoa usuario = (Pessoa) pessoadao.consultar(emailPessoa); 
+            
+            if(usuario != null){ 
+                Erros erro = new Erros();
+                erro.validaEmail();
+            }else if(!senhaPessoa.equals(confirmarSenha)){
+
+                Erros erro = new Erros();
+                erro.confirmarSenha();
+            }else{            
             FuncionarioDAO.cadastrar(funcionario);
             request.setAttribute("mensagem", "Gravado com sucesso!");
-
+            }
+ 
         } catch (SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagem", ex.getMessage());
         }

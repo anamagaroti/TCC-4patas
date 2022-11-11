@@ -53,7 +53,8 @@ import model.Funcionario;
 
     @Override
     public Object consultar(int codigo) throws SQLException {
-        String sql = "select * from funcionario where idpessoa = ?";
+        String sql = "select * from funcionario func inner join pessoa pe "
+                + "on func.idfuncionario = pe.idpessoa where pe.idpessoa = ?";
                 Funcionario funcionario = null;
                 PreparedStatement stmt = null;
                 ResultSet rs = null;
@@ -74,7 +75,7 @@ import model.Funcionario;
 
     @Override
     public List<Object> listar() throws SQLException {
-        String sql = "select * from funcionario";
+        String sql = "select * from funcionario func inner join pessoa pe on func.idfuncionario = pe.idpessoa";
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Object> listaFuncionario = new ArrayList<>();
@@ -95,7 +96,7 @@ import model.Funcionario;
 
     @Override
     public void excluir(int codigo) throws SQLException {
-       String sql = "delete from funcionario where idpessoa = ?";
+       String sql = "delete from funcionario where idfuncionario = ?";
         PreparedStatement stmt = null;
         try {
             stmt = conexao.prepareStatement(sql);

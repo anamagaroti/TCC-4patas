@@ -2,7 +2,12 @@
 #body{
    background-color: #F4F5F8;
     }
-  
+    
+    .col{
+      width: 22.8em;
+      margin: 0 auto;
+      margin-bottom: 35px; 
+    }   
     .collapse{
         background-color: #364A65;
     }

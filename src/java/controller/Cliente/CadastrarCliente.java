@@ -1,6 +1,8 @@
 package controller.Cliente;
 
+import TratamentoErros.Erros;
 import dao.ClienteDAO;
+import dao.PessoaDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
+import model.Pessoa;
 
 @MultipartConfig
 @WebServlet(name = "CadastrarCliente", urlPatterns = {"/CadastrarCliente"})
@@ -33,10 +36,11 @@ public class CadastrarCliente extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          try {
+            
             int idCliente = request.getParameter("idpessoa").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idpessoa"));
             
             request.getRequestDispatcher("imagem").include(request, response);
-            String imagem = (String) request.getAttribute("nomeImg");
+            String nomeImg = (String) request.getAttribute("nomeImg");
             
             String nomePessoa = request.getParameter("nomeCliente");
             String cpfPessoa = request.getParameter("cpfCliente");
@@ -51,26 +55,37 @@ public class CadastrarCliente extends HttpServlet {
             String telefonePessoa = request.getParameter("telefoneCliente");
             String emailPessoa = request.getParameter("emailCliente");
             String senhaPessoa = request.getParameter("senhaCliente");
+            String confirmarSenha = request.getParameter("confirmarSenha");
             String generoPessoa = request.getParameter("generoCliente");
-           
             
             
-            Cliente cliente = new Cliente (idCliente, imagem, nomePessoa, cpfPessoa, dataNascimentoPessoa, cepPessoa, 
+            Cliente cliente = new Cliente (idCliente, nomeImg, nomePessoa, cpfPessoa, dataNascimentoPessoa, cepPessoa, 
             cidadePessoa, bairroPessoa, ruaPessoa, numeroPessoa, complementoPessoa, estadoPessoa, telefonePessoa, 
             emailPessoa, generoPessoa, senhaPessoa, "Cliente");
-            
+           
             ClienteDAO clientedao = new ClienteDAO();
             
-            clientedao.cadastrar(cliente);
+            PessoaDAO pessoadao = new PessoaDAO();
+            Pessoa usuario = (Pessoa) pessoadao.consultar(emailPessoa); 
             
+            if(usuario != null){ 
+                Erros erro = new Erros();
+                erro.validaEmail();
+            }else if(!senhaPessoa.equals(confirmarSenha)){
+
+                Erros erro = new Erros();
+                erro.confirmarSenha();
+            }else{            
+            clientedao.cadastrar(cliente);
             request.setAttribute("mensagem", "Gravado com sucesso!");
-    
+            }
+
         } catch (SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagem", ex.getMessage());
         }
+    
+        request.getRequestDispatcher("login_cadastro.jsp").forward(request, response);
         
-        request.getRequestDispatcher("Login").forward(request, response);
-
     }
       @Override
     public String getServletInfo() {

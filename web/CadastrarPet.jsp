@@ -1,3 +1,4 @@
+<%@page import="model.Pessoa"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,15 +8,25 @@
         <title>Cadastro do Pet</title>
         <link rel="stylesheet" href="css/styleCadastrarPet.css">
 
+
     </head>
     <body>
-        <div>
+        <%
+            Pessoa usuario = (Pessoa) session.getAttribute("usuario");
+
+            if (usuario == null) {
+                response.sendRedirect("login_cadastro.jsp");
+            }
+        %>
         <div>
             <div>
-                <h1>Cadastre seu Pet</h1>
-            </div>           
-            <form action="CadastrarPet" method="post" enctype="multipart/form-data" multiple=webkitdirectory=''> 
-                
+                <div>
+                    <h1>Cadastre seu Pet</h1>
+                </div>           
+                <form action="CadastrarPet" method="post" enctype="multipart/form-data" multiple=webkitdirectory=''> 
+
+                    <input value="<%=usuario.getIdPessoa()%>" name="idCliente" hidden/>
+
                     <input name="idpet" id="idpet" type="text" value="${pet.idpet > 0 ? pet.idpet : ""}" hidden/>
                     <div class="input-box">
                         <label for="foto">Fotos do pet</label>
@@ -33,26 +44,26 @@
                         <label for="idade">Idade</label>
                         <input id="idade" type="text" name="idadepet" value="${pet.idadepet}" placeholder="Digite a idade do seu Pet" required>                    
                     </div>
-                     <div class="input-box">
+                    <div class="input-box">
                         <h3>espécie</h3>
                         <input id="especieC" type="radio" name="especiepet" value="cachorro"${pet.especiepet} required>
                         <label for="especieC">Cachorro</label>
                         <input id="especieG" type="radio" name="especiepet" value="gato"${pet.especiepet} required>
                         <label for="especieG">Gato</label>
-                     </div>
+                    </div>
                     <div class="input-box">
                         <label for="cores">Cores</label>
                         <input id="cores" type="text" name="corespet" value="${pet.corespet}" placeholder="Digite as cores do seu Pet" required>                    
                     </div>
-                      
-                      <div class="input-box">
+
+                    <div class="input-box">
                         <h3>Sexo</h3>
                         <input id="sexoM" type="radio" name="sexopet" value="macho"${pet.sexopet} required>
                         <label for="sexoM">Macho</label>
                         <input id="sexoF" type="radio" name="sexopet" value="femea"${pet.sexopet} required>
                         <label for="sexoF">Fêmea</label>
-                      </div>
-                     <div class="input-box">
+                    </div>
+                    <div class="input-box">
                         <h3>Porte</h3>
                         <input id="porteG" type="radio" name="portepet" value="Grande"${pet.portepet} required> 
                         <label for="porteG">Grande</label>
@@ -60,17 +71,17 @@
                         <label for="porteM">Médio</label>
                         <input id="porteP" type="radio" name="portepet" value="Pequeno"${pet.portepet} required>
                         <label for="porteP">Pequeno</label>
-                     </div>
-                      <div class="input-box">
+                    </div>
+                    <div class="input-box">
                         <label for="observacoes">Observações</label>
                         <textarea id="observacoes" name="observacoes" rows="8" cols="20" spellcheck="true" placeholder="Diga-nos como seu pet é..."></textarea>
-                      </div>
-                    <div>
-                    <button type="submit">Cadastrar pet</button>                    
                     </div>
-               </form>
-              </div>
+                    <div>
+                        <button type="submit">Cadastrar pet</button>                    
+                    </div>
+                </form>
             </div>
-                
+        </div>
+
     </body>
 </html>

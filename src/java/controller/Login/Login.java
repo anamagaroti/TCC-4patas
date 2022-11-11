@@ -1,6 +1,6 @@
 package controller.Login;
 
-import dao.UsuarioDAO;
+import dao.PessoaDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Usuario;
+import model.Pessoa;
 
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
@@ -21,56 +21,46 @@ public class Login extends HttpServlet {
         try {
             String emailUsuario = request.getParameter("emailUsuario");
             String senhaUsuario = request.getParameter("senhaUsuario");
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario usuario = (Usuario) usuarioDAO.realizarLogin(emailUsuario, senhaUsuario);
-            if(usuario != null) {
+            
+            PessoaDAO pessoadao = new PessoaDAO();
+            Pessoa usuario = (Pessoa) pessoadao.consultar(emailUsuario);
+ 
+            boolean loginSucesso = false;
+             
+            if(usuario != null && usuario.getSenhaPessoa().equals(senhaUsuario)) {
+            
+                loginSucesso = true;
+                
+            }
+            if(loginSucesso == true) {
                 HttpSession sessao = request.getSession(true);
                 sessao.setAttribute("usuario", usuario);
+                sessao.setMaxInactiveInterval(-1);
+                
                 request.getRequestDispatcher("/").forward(request, response);
-            } else {
+            } 
+            else {
                 request.setAttribute("mensagem", "Email ou senha estão incorretos!");
                 request.getRequestDispatcher("login_cadastro.jsp").forward(request, response);
-            }
-        } catch(SQLException | ClassNotFoundException ex) {
+            }           
+            } catch(SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagem", ex.getMessage());
             request.getRequestDispatcher("login_cadastro.jsp").forward(request, response);
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
