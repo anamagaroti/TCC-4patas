@@ -33,7 +33,7 @@
                     <input type="text" placeholder="Nome" required name="nomeCliente" />
                     <input type="text" placeholder="Cpf" required name="cpfCliente" />
                     <input type="date" placeholder="Data nascimento" name="dataNascimentoCliente" required />
-                    <input type="text" id="cep" value="" placeholder="Cep" name="cepCliente" required />
+                    <input type="text" maxlength="9" id="cep" value="" placeholder="Cep" name="cepCliente" required />
                     <input type="text" id="cidade" placeholder="Cidade" name="cidadeCliente" required />
                     <input type="text" id="bairro" placeholder="Bairro" name="bairroCliente" required />
                     <input type="text" id="ruaCliente" placeholder="Rua" name="ruaCliente" required />
@@ -70,9 +70,9 @@
                         <option value="SE">Sergipe</option>
                         <option value="TO">Tocantins</option>
                     </select>
-                    <input type="text" placeholder="Telefone" name="telefoneCliente" required />
+                    <input type="text" maxlength="9" placeholder="Telefone" name="telefoneCliente" required />
                     <input type="email" placeholder="E-mail" name="emailCliente" required />
-                    <input type="password" placeholder="Senha" name="senhaCliente" required />
+                    <input type="password" minlength="4" placeholder="Senha" name="senhaCliente" required />
                     <input type="password" placeholder="confirme sua senha" name="confirmarSenha" required />
                     <div class="gender-inputs">
                         <div class="gender-title">
@@ -140,18 +140,6 @@
                 </div>
             </div>
         </div>
-        <%
-            Cookie[] cookies = request.getCookies();
-            for (Cookie atual : cookies) {
-                if (atual.getName().equals("email") && atual.getName().equals("senha")) {
-
-                    response.sendRedirect("email");
-                    response.sendRedirect("senha");
-                }
-            }
-        %>
-
-
         <script src="js/script.js" charset="utf-8"></script>
     </body>
 

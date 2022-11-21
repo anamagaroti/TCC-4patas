@@ -1,0 +1,150 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    overflow: auto;
+}
+
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
+}
+
+.img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.login-content{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	text-align: center;
+}
+p{
+	margin-bottom: 6em;
+	font-size: 4em;
+	rotate: 20deg;
+	text-decoration: cornsilk;
+	color: white;
+	filter: drop-shadow(-6px 3px 8px black);
+}
+p{
+animation-duration: 1s;
+animation-delay: 2s;
+animation-name: Au;
+animation-iteration-count: infinite;
+z-index: 999;
+
+}
+
+@keyframes Au {
+	0%{
+		transform: scale(1);	
+	}
+	25% {
+		transform: scale(1.5)
+	}
+	50%{
+		transform: scale(1.10);
+	}
+	70%{
+		transform: scale(1.15);
+	}
+	85%{
+		transform: scale(1.20);
+	}
+	100%{
+		transform: scale(1.25);
+	}
+}
+.img img{
+	width: 20em;
+	filter: drop-shadow(-8px 8px 4px black);
+	margin-right: 17em;
+}
+
+form{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.login-content img{
+	height: 100px;
+	
+}
+
+.login-content h2{
+	margin: 15px 0;
+	color: #333;
+	text-transform: uppercase;
+	font-size: 2.9rem;
+}
+input{
+ background-color: wheat;
+ width: 30em;
+ height: 2.5em;
+border-radius: 20px;
+display: grid;
+border: 1px solid black;
+text-align: left;
+}
+.input-div{
+	margin: 0 auto;
+	margin: 10px;
+	
+}
+.btn{
+	background: green;
+	margin: 10px;
+	border: none;
+	text-align: center !important;
+}
+input[type="file"] {
+display: none;
+}
+label {
+    padding: 20px 10px;
+    width: 200px;
+    background-color: #333;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+/* aaaaaa */
+/* Esconde o input */
+input[type='file'] {
+	display: none
+  }
+  
+  /* Aparência que terá o seletor de arquivo */
+  label {
+	background-color: rgb(110, 61, 61);
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	margin: 10px;
+	padding: 6px 20px
+  }

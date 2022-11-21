@@ -2,12 +2,11 @@ package model;
 
 import java.io.File;
 
-public class Pet{
+public class Pet {
 
     private int idPet;
-    private Cliente cliente;
+    private Pessoa pessoa;
     private String nomeImg;
-    private String imagem;
     private String nomePet;
     private String racaPet;
     private String idadePet;
@@ -16,11 +15,38 @@ public class Pet{
     private String sexoPet;
     private String portePet;
     private String observacoes;
-    public Object getCliente;
+    private boolean adocao;
 
-    public Pet(int idPet, Cliente cliente, String nomeImg, String nomePet, String racaPet,  String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes) {
+    public Pet(int idPet, Pessoa pessoa, String nomeImg, String nomePet, String racaPet, String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes, boolean adocao) {
         this.idPet = idPet;
-        this.cliente = cliente;
+        this.pessoa = pessoa;
+        this.nomeImg = nomeImg;
+        this.nomePet = nomePet;
+        this.idadePet = idadePet;
+        this.racaPet = racaPet;
+        this.coresPet = coresPet;
+        this.especiePet = especiePet;
+        this.sexoPet = sexoPet;
+        this.portePet = portePet;
+        this.observacoes = observacoes;
+        this.adocao = adocao;
+    }
+
+    public Pet(int idPet, String nomeImg, String nomePet, String racaPet, String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes, boolean adocao) {
+        this.idPet = idPet;
+        this.nomeImg = nomeImg;
+        this.nomePet = nomePet;
+        this.idadePet = idadePet;
+        this.racaPet = racaPet;
+        this.coresPet = coresPet;
+        this.especiePet = especiePet;
+        this.sexoPet = sexoPet;
+        this.portePet = portePet;
+        this.observacoes = observacoes;
+        this.adocao = adocao;
+    }
+    public Pet(int idPet, String nomeImg, String nomePet, String racaPet, String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes) {
+        this.idPet = idPet;
         this.nomeImg = nomeImg;
         this.nomePet = nomePet;
         this.idadePet = idadePet;
@@ -31,47 +57,43 @@ public class Pet{
         this.portePet = portePet;
         this.observacoes = observacoes;
     }
-     public Pet(int idPet, String nomeImg, String nomePet, String racaPet,  String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes) {
+
+    public Pet(int idPet) {
         this.idPet = idPet;
-        this.nomeImg = nomeImg;
-        this.nomePet = nomePet;
-        this.idadePet = idadePet;
-        this.racaPet = racaPet;
-        this.coresPet = coresPet;
-        this.especiePet = especiePet;
-        this.sexoPet = sexoPet;
-        this.portePet = portePet;
-        this.observacoes = observacoes;
     }
 
-    public Pet(int idPet){
-        this.idPet = idPet;
-    }
     public Pet(File filePath, String nomeImg) {
-        this.imagem = imagem;
         this.nomeImg = nomeImg;
     }
 
-    public Pet() {     
+    public Pet() {
     }
 
     public int getIdPet() {
         return idPet;
     }
 
-    public void setIdPet(int idPet) {
+    public void getIdPet(int idPet) {
         this.idPet = idPet;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public int getPessoa(int pessoa) {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public String getNomeImg() {
+        return nomeImg;
+    }
+
+    public String getNomeImg(String string) {
         return nomeImg;
     }
 
@@ -79,15 +101,11 @@ public class Pet{
         this.nomeImg = nomeImg;
     }
 
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
     public String getNomePet() {
+        return nomePet;
+    }
+
+    public String getNomePet(String string) {
         return nomePet;
     }
 
@@ -150,6 +168,46 @@ public class Pet{
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
+
+    public void getRacaPet(String string) {
+        this.racaPet = string;
+    }
+
+    public void getIdadePet(String string) {
+        this.idadePet = string;
+    }
+
+    public void getCoresPet(String string) {
+        this.coresPet = string;
+    }
+
+    public void getEspeciePet(String string) {
+        this.especiePet = string;
+    }
+
+    public void getSexoPet(String string) {
+        this.sexoPet = string;
+    }
+
+    public void getPortePet(String string) {
+        this.portePet = string;
+    }
+
+    public void getObservacoes(String string) {
+        this.observacoes = string;
+    }
+
+    public boolean setAdocao(boolean adocao) {
+        this.adocao = adocao;
+        return adocao;
+    }
+    
+    public boolean isAdocao() {
+        return adocao;
+    }
+
+    public void setIdPet(int idPet) {
+        this.idPet = idPet;
+    }
     
 }
-

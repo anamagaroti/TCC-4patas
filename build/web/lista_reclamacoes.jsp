@@ -19,7 +19,7 @@
                         <tr>
                             <th>Reclamação</th>
                             <th>pessoa</th>
-                            <th>telefone</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>

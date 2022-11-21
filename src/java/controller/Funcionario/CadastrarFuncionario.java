@@ -21,8 +21,7 @@ public class CadastrarFuncionario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-    }
+        }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,6 +35,8 @@ public class CadastrarFuncionario extends HttpServlet {
         processRequest(request, response);
         
           try {
+            request.setCharacterEncoding("UTF-8");
+            
             int idFuncionario = request.getParameter("idFuncionario").isEmpty() 
                     ? 0 : Integer.parseInt(request.getParameter("idFuncionario"));
             String nomePessoa = request.getParameter("nomePessoa");            

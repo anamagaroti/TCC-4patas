@@ -1,9 +1,9 @@
         create table pessoa(
             idPessoa serial not null primary key,
             nomeImg varchar,
-            nomePessoa varchar not null,            
-            dataNascimentoPessoa varchar not null,
+            nomePessoa varchar not null,                        
             cpfPessoa varchar not null,
+            dataNascimentoPessoa varchar not null,
             cepPessoa varchar not null,
             cidadePessoa varchar not null,
             bairroPessoa varchar not null,
@@ -29,7 +29,7 @@
 
         create table pet(
             idPet serial not null primary key,
-            idCliente int not null references cliente(idcliente),
+            idPessoa int not null references pessoa(idpessoa),
             nomeImg varchar not null,
             nomepet varchar not null,
             racapet varchar not null,
@@ -38,15 +38,16 @@
             corespet varchar not null,
             sexopet varchar not null,
             portepet varchar not null,
-            observacoes varchar not null
+            observacoes varchar not null,
+            adocao boolean not null
         );
 
-        create table Adotar(
+        create table Adocao(
             idAdocao serial not null primary key,
-            idPet int not null references pet(idPet),
-            idCliente int not null references cliente(idCliente)          
+            idPessoa int not null references pessoa(idpessoa),
+            idPet int not null references pet(idpet)         
         );
-        
+
         create table reclamacao(
             idreclamacao serial not null primary key,
             reclamacao varchar not null,
@@ -109,24 +110,24 @@
 
         -- PROCEDURE CADASTRO E CONSULTA DE PET;
 
-         create or replace procedure cadastrarpet(id_pet int, id_cliente int, nomeImg varchar, nome_pet varchar, raca_pet varchar, idade_pet varchar, especie_pet varchar, cores_pet varchar, sexo_pet varchar, porte_pet varchar, observacoes_pet varchar) as $$
+         create or replace procedure cadastrarpet(id_pet int, id_pessoa int, nome_img varchar, nome_pet varchar, raca_pet varchar, idade_pet varchar, especie_pet varchar, cores_pet varchar, sexo_pet varchar, porte_pet varchar, observacoes_pet varchar, adocao_pet boolean) as $$
             begin
                 if id_pet > 0 then
-                    update pet set idcliente = id_cliente, nomeimg = nomeImg, nomePet = nome_pet, racaPet = raca_pet, idadePet = idade_pet, especiePet = especie_pet, coresPet = cores_pet, sexoPet = sexo_pet, portePet = porte_pet, observacoes = observacoes_pet where idPet = id_pet;
+                    update pet set idpessoa = id_pessoa, nomeimg = nome_img, nomePet = nome_pet, racaPet = raca_pet, idadePet = idade_pet, especiePet = especie_pet, coresPet = cores_pet, sexoPet = sexo_pet, portePet = porte_pet, observacoes = observacoes_pet, adocao = adocao_pet where idPet = id_pet;
                 else
-                    insert into pet values(default, id_pessoa, nomeimg, nome_pet, raca_pet, idade_pet, especie_pet, cores_pet, sexo_pet, porte_pet, observacoes_pet);
+                    insert into pet values(default, id_pessoa, nome_img, nome_pet, raca_pet, idade_pet, especie_pet, cores_pet, sexo_pet, porte_pet, observacoes_pet, adocao_pet);
                 end if;
             end;
         $$ language plpgsql;
 
         -- PROCEDURE CADASTRO E CONSULTA DE ADOÇÃO;
         
-         create or replace procedure cadastrarAdocao(id_adocao int, id_pet int, id_cliente int) as $$
+        create or replace procedure cadastraradocao(id_adocao int, id_pessoa int, id_pet int) as $$
             begin
                 if id_adocao > 0 then
-                    update adotar set idpet = id_pet, idCliente = id_cliente where idadocao = id_adocao;
+                    update adocao set idpessoa = id_pessoa, idpet = id_pet where idAdocao = id_adocao;
                 else
-                    insert into adotar values(default, id_pet, id_cliente);
+                    insert into adocao values(default, id_pessoa, id_pet);
                 end if;
             end;
         $$ language plpgsql;

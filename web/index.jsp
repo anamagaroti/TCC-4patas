@@ -40,6 +40,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="CadastrarPet.jsp">Doar</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="listarPet?pagina=adotados">Adotados</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Sobre
@@ -50,7 +53,7 @@
                                     <%
                                         if (usuario != null) {
 
-                                            if (usuario.getLogouPessoa() == "funcionario") {
+                                            if ("funcionario".equals(usuario.getLogouPessoa())) {
                                     %>
                                 <li><a class="dropdown-item" href="formulario.jsp">Cadastro Funcionário</a></li>
                                 <li><a class="dropdown-item" href="ListarFuncionario">Lista dos Funcionarios</a></li>
@@ -78,19 +81,30 @@
                             if (usuario != null) {
                         %>
                         <div class="opicoes" style="padding-right: 60px; margin-left: 20px;">
-                            <img style="width: 40px; border-radius: 180px; color: #fff; "
+                            <img style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;"
                                  src="<%= (String) request.getContextPath() + "/imagem/" + usuario.getNomeImg()%>"/>
-                            <a class="nav-link dropdown-toggle" href="login_cadastro.jsp" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a style="color: #fff;" class="nav-link dropdown-toggle" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <%= usuario.getNomePessoa()%>
                             </a>
 
                             <li style="list-style-type: none;" class="dropdown">
-                                <ul class="dropdown-menu" aria-labelledby="perfil">                 
-                                    <li><a class="dropdown-item" href="">Pedidos de adoção</a></li>
+                                <ul class="dropdown-menu" aria-labelledby="perfil"> 
+                                    <li><a class="dropdown-item" href="conta.jsp">Perfil</a></li>
+                                    <%
+                                        if ("funcionario".equals(usuario.getLogouPessoa())) {
+                                    %>
+                                    <li><a class="dropdown-item" href="ListaDoacoes">Confirmação de doações</a></li>
+                                    <li><a class="dropdown-item" href="listarAdocao">Pedidos de adoção</a></li>
+                                    <li><a class="dropdown-item" href="listarReclamacao">Reclamações</a></li>
+                                        <%
+                                        } else {
+                                        %>
                                     <li><a class="dropdown-item" href="">Pets doados</a></li>
                                     <li><a class="dropdown-item" href="reclamacao.jsp">Relatar um Problema</a></li>
-                                    <li><a class="dropdown-item" href="listarReclamacao">Reclamações</a></li>
-                                    <li><a class="dropdown-item" onclick="alert()" href="Logout">Sair</a></li>
+                                        <%
+                                            }
+                                        %>
+                                    <li><a class="dropdown-item" onclick="alert('deseja sair desta conta?')" href="Logout">Sair</a></li>
                                 </ul>
                             </li>
                         </div>
@@ -153,17 +167,18 @@
         </div>
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="First group">
-                <button href="listarPet" type="button" class="btn btn_todos btn-outline" id="todos" value="todos" id="botao " onclick="Click('todos')">Todos</button>
-                <button href="listarPet?tipoListagem=cachorro" type="button" class="btn btn-outline" id="cachorro" value="cachorro" onclick="Click('cachorro')"> Cachorro     </button>
-                <button href="listarPet?tipoListagem=gato" type="button" class="btn btn-outline" id="gato" value="gato" onclick="Click('gato')">Gato    </button>
+                <button href="listarPet" class="btn btn_todos btn-outline" id="todos" value="todos" id="botao" onclick="Click('todos')">Todos</button>
+                <button href="listarPet?tipoListagem=cachorro"  class="btn btn-outline" id="cachorro" value="cachorro" onclick="Click('cachorro')"> Cachorro</button>
+                <button href="listarPet?tipoListagem=gato" class="btn btn-outline" id="gato" value="gato" onclick="Click('gato')">Gato</button>
             </div>
         </div>
-
         <% List<Pet> lista = (List<Pet>) request.getAttribute("pets"); %>
-        <%
-            for (Pet pet : lista) {
-        %>
+
         <div class="row row-cols-2 row-cols-md-3 col-10">
+            <%
+                for (Pet pet : lista) {
+                if(pet.isAdocao() == false){
+            %>
             <div class="col">
                 <div class="card">            
                     <img class="card-img-top" src="<%= (String) request.getContextPath() + "/imagem/" + pet.getNomeImg()%>"/> 
@@ -171,16 +186,19 @@
                         <h5 class="card-title"><%= pet.getNomePet()%></h5>
                         <p class="card-text"><%= pet.getObservacoes()%></p>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <a class="btn-lista" href="consultarPet?idpet=<%=pet.getIdPet()%>">ver mais</a> 
-                        </button>        
+                        <a class="btn-lista" href="consultarPet?idpet=<%=pet.getIdPet()%>">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                ver mais 
+                            </button>  
+                        </a>
                     </div>
                 </div>
             </div>
+            <%
+                }}
+            %> 
         </div>   
-        <%
-            }
-        %> 
+
         <!-- Modal -->  
 
         <nav class="navegar" aria-label="Page navigation example">

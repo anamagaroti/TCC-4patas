@@ -14,31 +14,36 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "listarPet", urlPatterns = {"/listarPet"})
 public class listarPet extends HttpServlet {
 
+    @SuppressWarnings("ConvertToStringSwitch")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String tipoListagem = request.getParameter("todos");
-
-        try {
             
-            if("cachorro".equals(tipoListagem)){
-                ListaCachorro cachorro = new ListaCachorro();
-                cachorro.cachorro(request, response);
-            }else if("gato".equals(tipoListagem)){
-                ListaGato gato = new ListaGato();
-                gato.gato(request, response);
-            }else{
-            PetDAO petdao = new PetDAO();
-            request.setAttribute("pets", petdao.listar());
+        String pagina = request.getParameter("pagina") == null ? "index" : request.getParameter("pagina");
+        try {           
+            String tipoListagem = request.getParameter("todos");
+
+            if ("cachorro".equals(tipoListagem)) {
+                PetDAO petdao = new PetDAO();
+                request.setAttribute("pets", petdao.listarCachorro());
+            } else if ("gato".equals(tipoListagem)) {
+                PetDAO petdao = new PetDAO();
+                request.setAttribute("pets", petdao.listarGato());
+            } else {
+                PetDAO petdao = new PetDAO();
+                request.setAttribute("pets", petdao.listar());
             }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(listarPet.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        if(pagina.equals("index")){
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }else{
+            request.getRequestDispatcher("adotados.jsp").forward(request, response);
         }
-
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-
-    }
+            
+            
+        }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

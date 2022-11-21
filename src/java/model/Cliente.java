@@ -49,6 +49,11 @@ public class Cliente extends Pessoa{
         return super.getNomePessoa(string);    
     }
 
+    @Override
+    public String getNomeImg(String string) {
+        return super.getNomeImg(); 
+    }
+    
 }
     
     

@@ -32,7 +32,11 @@
             </h4>
 
             <div class="d-grid gap-2">
-                <button  class="btn btn-primary" type="button"><a class="link" href="listarPet"> Voltar</a></button>
+              <a class="link" href="listarPet">
+                <button style="background-color: #fff; width: 80px; color: #000000; border-radius: 10px; margin: 10px 5px 10px 360px; "> 
+                Voltar
+                </button>
+              </a>
             </div>      
             <script src="js/razaoscript.js" ></script>
         </div>

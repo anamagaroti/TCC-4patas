@@ -1,0 +1,23 @@
+.tudo{
+    display: flex;
+    justify-content: center;
+}
+h1{
+    text-align: center;
+}
+ .card-img-top{
+  height: 11em;
+    max-height: 11em;
+    object-fit: cover;
+ }
+ 
+ .col{
+  margin-top: 20px;
+  margin-bottom: 0px;
+    width: 22em;
+}
+.row{
+margin: 0 6em  6em auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
+}

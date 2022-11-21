@@ -1,5 +1,7 @@
 package controller.Login;
 
+import dao.ClienteDAO;
+import dao.FuncionarioDAO;
 import dao.PessoaDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,19 +21,29 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
+            
             String emailUsuario = request.getParameter("emailUsuario");
             String senhaUsuario = request.getParameter("senhaUsuario");
             
             PessoaDAO pessoadao = new PessoaDAO();
             Pessoa usuario = (Pessoa) pessoadao.consultar(emailUsuario);
- 
+            
+            ClienteDAO cliDAO = new ClienteDAO();
+            Pessoa cli = (Pessoa) cliDAO.consultar(usuario.getIdPessoa());
+            
+            FuncionarioDAO funcDAO = new FuncionarioDAO();
+            Pessoa func = (Pessoa) funcDAO.consultar(usuario.getIdPessoa());
+            
+            
+            
             boolean loginSucesso = false;
-             
-            if(usuario != null && usuario.getSenhaPessoa().equals(senhaUsuario)) {
+            
+            if(func != null && usuario.getSenhaPessoa().equals(senhaUsuario)){
             
                 loginSucesso = true;
-                
-            }
+            } else if(cli != null && usuario.getSenhaPessoa().equals(senhaUsuario)){       
+                loginSucesso = true;
+            }  
             if(loginSucesso == true) {
                 HttpSession sessao = request.getSession(true);
                 sessao.setAttribute("usuario", usuario);

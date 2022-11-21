@@ -5,11 +5,12 @@ body{
 .body{   
     display: grid;
     justify-content: center;
-
+     height: auto;
 }
 .tudo{  
     display: grid;
     justify-items: center;
+   
     width: 500px;
     background-color: rgb(94, 50, 20);
     padding-left: 10px;

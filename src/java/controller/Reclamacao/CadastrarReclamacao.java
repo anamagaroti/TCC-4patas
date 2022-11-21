@@ -19,6 +19,7 @@ public class CadastrarReclamacao extends HttpServlet {
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         try {
+            request.setCharacterEncoding("UTF-8");
             int idReclamacao = request.getParameter("idreclamacao").isEmpty() 
                     ? 0 : Integer.parseInt(request.getParameter("idreclamacao"));
             String Reclamacao = request.getParameter("reclamacao");
@@ -37,7 +38,7 @@ public class CadastrarReclamacao extends HttpServlet {
         
         Funcionario func = new Funcionario();
         
-        if(func.getLogouPessoa().equals("funcionario")){
+        if("funcionario".equals(func.getLogouPessoa())){
             request.getRequestDispatcher("listarReclamacoes").forward(request, response);
         }else{
             request.getRequestDispatcher("listarPet").forward(request, response);

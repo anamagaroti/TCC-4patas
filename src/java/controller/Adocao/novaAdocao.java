@@ -15,7 +15,7 @@ public class novaAdocao extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-            request.setAttribute("adocoes", new Adocao());
+            request.setAttribute("adocao", new Adocao());
 
         request.getRequestDispatcher("listarPet").forward(request, response);
     }

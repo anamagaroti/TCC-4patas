@@ -1,7 +1,6 @@
 
 package controller.Pet;
 
-import com.google.gson.Gson;
 import dao.PetDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,13 +23,7 @@ public class consultarPet extends HttpServlet {
             PetDAO petdao = new PetDAO();      
             
            request.setAttribute("pet", petdao.consultar(idPet));
-            
-        //    Gson gson = new Gson();
-        //    String json = gson.toJson(petdao);
-            
-        //    response.setContentType("application/json");
-        //    response.getWriter().print(json);
-            
+ 
         } catch (SQLException | ClassNotFoundException ex) {
             request.setAttribute("mensagem", ex.getMessage());
         }

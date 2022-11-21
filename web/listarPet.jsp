@@ -12,32 +12,39 @@
     </head>
     <body> 
         <%
-        Pessoa usuario = (Pessoa) session.getAttribute("usuario");
-
-        if (usuario == null) {
-            response.sendRedirect("login_cadastro.jsp");
-        }
+            Pessoa usuario = (Pessoa) session.getAttribute("usuario");
         %>
         <div class="body">
-            <form action="CadastrarAdocao" method="post">
+            <form action="CadastrarAdocao" method="post" enctype="multipart/form-data" multiple=webkitdirectory=''>
                 <div class="tudo">            
                     <input type="text" name="idAdocao" hidden/>
-                    <input value="<%=usuario.getIdPessoa()%>" name="idCliente" hidden/>
+                    <%
+                        if (usuario != null) {
+                    %>
+                    <input value="<%=usuario.getIdPessoa()%>" name="idPessoa" hidden/>
+                    <%
+                        } else {
+                            response.sendRedirect("login_cadastro.jsp");
+                        }
+                    %>
                     <input type="text" name="idPet" value="${pet.idPet}" hidden/>
                     <div class="text">
                         <h1 class="">${pet.nomePet}</h1>
+                        <input type="text" name="nomepet" value="${pet.nomePet}" hidden/>
                     </div>
                     <div>                    
                         <img src="imagem/${pet.nomeImg}" alt=""/>
+
+                        <input type="text" name="nomeImg" value="${pet.nomeImg}" hidden/>
                     </div>
-                    <div class="infos">        
+                    <div class="infos"> 
                         <p class="text">Raça: ${pet.racaPet}</p>
                         <p class="text">Idade: ${pet.idadePet}</p>
                         <p class="text">Espécie: ${pet.especiePet}</p>
                         <p class="text">Cores: ${pet.coresPet}</p>
                         <p class="text">Sexo: ${pet.sexoPet}</p>
                         <p class="text">Porte: ${pet.portePet}</p>
-                        <p class="text">Observacões: ${pet.observacoes}</p>
+                        <p class="text">Observações: ${pet.observacoes}</p>
                     </div>
                     <div class="">
                         <a href="listarPet" class="btn">Voltar</a>

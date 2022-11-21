@@ -9,7 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cliente;
+import javax.servlet.http.HttpSession;
+import model.Pessoa;
 import model.Pet;
 
 @MultipartConfig
@@ -22,8 +23,9 @@ public class CadastrarPet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         try {
+            request.setCharacterEncoding("UTF-8");
             int idPet = request.getParameter("idpet").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idpet"));
-            int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+            int idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
             String nomePet = request.getParameter("nomepet");
             String racaPet = request.getParameter("racapet");
             String idadePet = request.getParameter("idadepet");
@@ -36,7 +38,8 @@ public class CadastrarPet extends HttpServlet {
             request.getRequestDispatcher("imagem").include(request, response);
             String nomeImg = (String) request.getAttribute("nomeImg");
             
-           Pet pet = new Pet(idPet, new Cliente(idCliente), nomeImg, nomePet, racaPet, idadePet, especiePet, coresPet, sexoPet, portePet, observacoes);
+           Pet pet = new Pet(idPet, new Pessoa(idPessoa), nomeImg, nomePet, racaPet, 
+                   idadePet, especiePet, coresPet, sexoPet, portePet, observacoes, false);
             
            PetDAO petDAO = new PetDAO();
             
@@ -47,7 +50,14 @@ public class CadastrarPet extends HttpServlet {
             request.setAttribute("mensagem", ex.getMessage());
         }
         
-        request.getRequestDispatcher("listarPet").forward(request, response);
+        HttpSession sessao = request.getSession(true);
+        Pessoa usuario = (Pessoa) sessao.getAttribute("usuario");
+        
+        if("funcionario".equals(usuario.getLogouPessoa())){
+            request.getRequestDispatcher("ListaDoacoes").forward(request, response);
+        }else{
+            request.getRequestDispatcher("pedidoDoacao.jsp").forward(request, response);
+        }
     }
 
     @Override

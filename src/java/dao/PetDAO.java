@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Pessoa;
+import dao.PessoaDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Pet;
 
 public class PetDAO implements DAOGenerica {
@@ -19,13 +23,13 @@ public class PetDAO implements DAOGenerica {
 
     @Override
     public void cadastrar(Object objeto) throws SQLException {
-        String sql = "CALL cadastrarpet(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "CALL cadastrarpet(?,?,?,?,?,?,?,?,?,?,?,?)";
         Pet pet = (Pet) objeto;
         PreparedStatement stmt = null;
         try {
             stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, pet.getIdPet());
-            stmt.setInt(2, pet.getCliente().getIdCliente());
+            stmt.setInt(2, pet.getPessoa().getIdPessoa());
             stmt.setString(3, pet.getNomeImg());
             stmt.setString(4, pet.getNomePet());
             stmt.setString(5, pet.getRacaPet());
@@ -35,6 +39,7 @@ public class PetDAO implements DAOGenerica {
             stmt.setString(9, pet.getSexoPet());
             stmt.setString(10, pet.getPortePet());
             stmt.setString(11, pet.getObservacoes());
+            stmt.setBoolean(12, pet.isAdocao());
             stmt.execute();
         } catch (SQLException ex) {
             throw new SQLException("Erro ao gravar pet");
@@ -54,12 +59,19 @@ public class PetDAO implements DAOGenerica {
             stmt.setInt(1, codigo);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                pet = new Pet(rs.getInt("idpet"),rs.getString("nomeimg"), rs.getString("nomepet"), rs.getString("racapet"), 
-                        rs.getString("idadepet"), rs.getString("especiepet"), rs.getString("corespet"),  
-                        rs.getString("sexopet"),  rs.getString("portepet"),rs.getString("observacoes"));
+                pet = new Pet(rs.getInt("idpet"), 
+                        (Pessoa) new PessoaDAO().adotar(rs.getInt("idpessoa")),
+                        rs.getString("nomeimg"), rs.getString("nomepet"), rs.getString("racapet"), 
+                        rs.getString("idadepet"), rs.getString("especiepet"), 
+                        rs.getString("corespet"),  rs.getString("sexopet"),  
+                        rs.getString("portepet"),rs.getString("observacoes"),
+                        rs.getBoolean("adocao")
+                );
             }
         } catch (SQLException ex) {
             throw new SQLException("Erro ao consultar pet");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             Conexao.encerrarConexao(conexao, stmt, rs);
         }
@@ -76,11 +88,15 @@ public class PetDAO implements DAOGenerica {
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Pet pet = new Pet(rs.getInt("idpet"),rs.getString("nomeimg"), rs.getString("nomepet"), 
-                        rs.getString("racapet"), rs.getString("idadepet"), rs.getString("especiepet"), 
-                        rs.getString("corespet"), rs.getString("sexopet"), rs.getString("portepet"), 
-                        rs.getString("observacoes"));
+                Pet pet = new Pet(rs.getInt("idpet"),  rs.getString("nomeimg"), 
+                        rs.getString("nomepet"), rs.getString("racapet"), 
+                        rs.getString("idadepet"), rs.getString("especiepet"), 
+                        rs.getString("corespet"), rs.getString("sexopet"), 
+                        rs.getString("portepet"), rs.getString("observacoes"),
+                        rs.getBoolean("adocao")
+                );
                 lista.add(pet);               
+                
             }
         } catch (SQLException ex) {
             throw new SQLException("Erro ao listar Pets");
@@ -99,7 +115,11 @@ public class PetDAO implements DAOGenerica {
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Pet pet = new Pet(rs.getInt("idpet"), rs.getString("nomeimg"), rs.getString("nomepet"), rs.getString("racapet"), rs.getString("idadepet"), rs.getString("especiepet"), rs.getString("corespet"), rs.getString("sexopet"), rs.getString("portepet"), rs.getString("observacoes"));
+                Pet pet = new Pet(rs.getInt("idpet"), rs.getString("nomeimg"), 
+                        rs.getString("nomepet"), rs.getString("racapet"), 
+                        rs.getString("idadepet"), rs.getString("especiepet"), 
+                        rs.getString("corespet"), rs.getString("sexopet"), 
+                        rs.getString("portepet"), rs.getString("observacoes"));
                 lista.add(pet);               
             }
         } catch (SQLException ex) {
@@ -119,7 +139,11 @@ public class PetDAO implements DAOGenerica {
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Pet pet = new Pet(rs.getInt("idpet"), rs.getString("nomeimg"), rs.getString("nomepet"), rs.getString("racapet"), rs.getString("idadepet"), rs.getString("especiepet"), rs.getString("corespet"), rs.getString("sexopet"), rs.getString("portepet"), rs.getString("observacoes"));
+                Pet pet = new Pet(rs.getInt("idpet"), rs.getString("nomeimg"), 
+                        rs.getString("nomepet"), rs.getString("racapet"), 
+                        rs.getString("idadepet"), rs.getString("especiepet"), 
+                        rs.getString("corespet"), rs.getString("sexopet"), 
+                        rs.getString("portepet"), rs.getString("observacoes"));
                 lista.add(pet);               
             }
         } catch (SQLException ex) {

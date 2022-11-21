@@ -112,8 +112,16 @@ public class Pessoa {
         this.nomeImg = nomeImg;
     }
     
+    public Pessoa(int idPessoa){
+        this.idPessoa = idPessoa;
+    }
+    
     public Pessoa() {
     
+    }
+    
+    public int getPessoa(int pessoa){
+        return pessoa;
     }
 
     public int getIdPessoa() {
@@ -135,7 +143,11 @@ public class Pessoa {
     public String getNomeImg() {
         return nomeImg;
     }
-
+    
+    public String getNomeImg(String string) {
+        return nomeImg; 
+    }
+    
     public void setNomeImg(String nomeImg) {
         this.nomeImg = nomeImg;
     }
@@ -264,5 +276,25 @@ public class Pessoa {
 
     public void setLogouPessoa(String logouPessoa) {
         this.logouPessoa = logouPessoa;
+    }
+
+    public void getCpfPessoa(String cpfpessoa) {
+        this.cpfPessoa = cpfpessoa;
+    }
+
+    public void getDataNascimentoPessoa(String data) {
+        this.dataNascimentoPessoa = data;
+    }
+
+    public void getCepPessoa(String cep) {
+        this.cepPessoa = cep;
+    }
+
+    public void getEmailPessoa(String email) {
+        this.emailPessoa = email;
+    }
+
+    public void getGeneroPessoa(String genero) {
+        this.generoPessoa = genero;
     }
 }

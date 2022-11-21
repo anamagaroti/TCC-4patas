@@ -1,101 +1,153 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar perfil - 4patas</title>
-        <link rel="shortcut icon" href="img/logo_navegador.jpeg">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link href="css/stylesConfiguracoes.css" rel="stylesheet" type="text/css"/>
-    </head>   
-    <body>
-        <div class="container">
-            <aside>
-                <ul>
-                    <li class="links">
-                        <a href="#">Editar perfil</a>
-                    </li>
-                    <li class="links>
-                        <a href="#">Alterar senha</a>
-                    </li>
-                    <li class="links>
-                        <a href="#">Editar endereÃ§o</a>
-                    </li>
-                    <li class="links>
-                        <a href="#">Editar dados pessoais</a>
-                    </li>
-                </ul>
-            </aside>
-            <form action="CadastrarCliente" method="post">
-                <input type="type" name="idCliente" id="idcliente" hidden value="${cliente.idpessoa > 0 ? cliente.idpessoa : ""}">
-                <div>
-                    <label for="foto">Foto de perfil</label>
-                    <input type="file" id="foto" name="imagem">
-                </div>
-                <div>
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nomeCliente" value="${cliente.nomePessoa}">
-                </div>
-                <div>
-                    <label for="dn">Data de nascimento</label>
-                    <input type="date" id="dn" name="dataNascimentoCliente" value="${cliente.datanascimentoPessoa}">                
-                </div>
-                <div>
-                    <label for="cpf">CPF</label>
-                    <input type="text" id="cpf" name="cpfCliente" value="${cliente.cpfPessoa}">
-                </div>
-                <div>
-                    <label for="endereco"> EndereÃ§o</label>
-                    <input type="text" id="endereco" name="enderecoCliente" value="${cliente.enderecoPessoa}">
-                </div>
-                <div>
-                    <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidadeCliente" value="${cliente.cidadePessoa}">
-                </div>
-                <div>
-                    <label for="estado">Estado</label>
-                    <input type="text" id="estado" name="estadoCliente" value="${cliente.estadoPessoa}">
-                </div>
-                <div>
-                    <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cepCliente" value="${cliente.cepPessoa}">
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="emailCliente" value="${cliente.emailPessoa}">
-                </div>
-                <div class="gender-group" >
-                    <h5>GÃªnero</h5>
-                    <div class="gender-input">
-                        <input id="female" type="radio" name="generoCliente" value="Feminino"${cliente.generopessoa}>
-                        <label for="female">Feminino</label>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/conta.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container emp-profile">
+        <p class="titulo">Editar Perfil</p>
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                        <div class="file btn btn-lg btn-primary">
+                            Editar Foto
+                            <input class="file" type="file" name="file"/>
+                        </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    Kshiti Ghelani
+                                </h5>
+                                <h6>
+                                    Perfil
+                                </h6>
+                               
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Enviar"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p class="Txt_alterar"><Strong>Alterações Possiveis</Strong></p>
+                        <a class="links_alterar" href="">Alterar senha</a><br/><br>
+                        <a class="links_alterar" href="">Editar endereço</a> <br><br>
+                        <a class="links_alterar" href="">Editar dados pessoais</a><br/><br>
+                        <a class="links_alterar" href="">Editar Email</a> <br><br>
+                        <a class="links_alterar" href="">Editar Telefone</a>
+                        
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Id de Usuario</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Kshiti123</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Nome</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Kshiti Ghelani</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>kshitighelani@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Telefone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>123 456 7890</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Data de nascimento</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>20/06/2005</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>CPF</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>111.111.111-11</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>CEP</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>99999-999</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>SEXO</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p> Feminino                                               
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                    <!-- Endereço -->                                   
+                                        </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>ENDEREÇO</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>RUA:</strong>  Jorgin do Grau <br> <Strong>Número:</Strong> 157                                              
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                        </div>
 
-                    <div class="gender-input">
-                        <input id="male" type="radio" name="generoCliente" value="Masculino"${cliente.generopessoa}>
-                        <label for="male">Masculino</label>
+                        
                     </div>
-                    <div class="gender-input">
-                        <input id="others" type="radio" name="generoCliente" value="Outros" ${cliente.generopessoa}>
-                        <label for="others">Outros</label>
-                    </div>
-                    <div>
-                        <label for="senha">Senha antiga</label>
-                        <input type="password" id="senha">
-                    </div>
-                    <div>
-                        <label for="senha">Nova senha</label>
-                        <input type="password" id="senha" name="senhaCliente">
-                    </div>
-                    <div>
-                        <label for="confimacaoSenha">Confirmar nova senha</label>
-                        <input type="password" id="confimacaoSenha">
-                    </div>
-                    <div>
-                        <button type="submit">Enviar</button>
-                    </div>
-            </form>
-        </div>
-    </body>
+                </div>
+            </div>
+        </form>           
+    </div>
+</body>
 </html>
-

@@ -3,11 +3,13 @@
 #body{
 background-color: var(--fundo);
 }
+
 .row{
 margin: 0 6em  6em auto;
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(22em, 1fr));
 }
+
 .col{
   margin-top: 20px;
   margin-bottom: 0px;
@@ -45,7 +47,6 @@ z-index: 1;
 }
 .nav-link{
     font-size: 15px;
-    
 }
  .carousel-inner{
 width: 100%;

@@ -22,7 +22,8 @@ public class listarAdocao extends HttpServlet {
             request.setAttribute("mensagem", ex.getMessage());
         }
 
-        request.getRequestDispatcher("listarConsulta.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("listaAdocao.jsp").forward(request, response);
     }
 
     @Override

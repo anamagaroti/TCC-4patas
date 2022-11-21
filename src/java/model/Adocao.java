@@ -3,20 +3,16 @@ package model;
 public class Adocao{
 
     private int idAdocao;
-    private Pet pet;    
-    private Funcionario funcionario;
-    private Cliente cliente;
+    private Pessoa pessoa;
+    private Pet pet;
 
-    public Adocao(int idAdocao, Pet pet, Cliente cliente) {
+
+    public Adocao(int idAdocao, Pessoa pessoa, Pet pet) {
         this.idAdocao = idAdocao;
+        this.pessoa = pessoa;
         this.pet = pet;
-        this.cliente = cliente;
     }
-    public Adocao(int idAdocao, Pet pet, Funcionario funcionario) {
-        this.idAdocao = idAdocao;
-        this.pet = pet;
-        this.funcionario = funcionario;
-    }
+  
     public Adocao(){
         
     }
@@ -28,7 +24,15 @@ public class Adocao{
     public void setIdAdocao(int idAdocao) {
         this.idAdocao = idAdocao;
     }
-    
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
     public Pet getPet() {
         return pet;
     }
@@ -36,20 +40,4 @@ public class Adocao{
     public void setPet(Pet pet) {
         this.pet = pet;
     }
-
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }  
 }

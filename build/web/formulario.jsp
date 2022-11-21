@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="img/logo_navegador.jpeg">
-        <link rel="stylesheet" href="css/formulario.css">
+
         <title>Cadastro Funcionário</title>
         <script src="js/buscaCep.js" type="text/javascript"></script>
     </head>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="input-box">
                         <label for="cep">CEP</label>
-                        <input id="cep" type="text" name="cepPessoa" placeholder="Digite seu CEP" required  value="${funcionario.cepPessoa}">
+                        <input id="cep" maxlength="9" type="text" name="cepPessoa" placeholder="Digite seu CEP" required  value="${funcionario.cepPessoa}">
                     </div>
                     <div class="input-box">
                         <label for="cidade">Cidade</label>
@@ -102,7 +102,7 @@
                 <div class="group-2"> 
                     <div class="input-box">
                         <label for="telefonepessoa">Celular</label>
-                        <input id="telefonepessoa" type="tel" name="telefonePessoa" placeholder="(xx) xxxx-xxxx" required  value="${funcionario.telefonePessoa}">
+                        <input id="telefonepessoa" maxlength="11" type="tel" name="telefonePessoa" placeholder="(xx) xxxx-xxxx" required  value="${funcionario.telefonePessoa}">
                     </div>
                     <div class="input-box">
                         <label for="emailpessoa">E-mail</label>
@@ -114,7 +114,7 @@
                     </div>   
                     <div class="input-box">
                         <label for="senhapessoa">Senha</label>
-                        <input id="senhapessoa" type="password" name="senhaPessoa" placeholder="Digite sua senha" required >
+                        <input id="senhapessoa" minlength="4" type="password" name="senhaPessoa" placeholder="Digite sua senha" required >
                     </div>
                     <div class="input-box">
                         <label for="senhapessoa">Confirme sua Senha</label>

@@ -14,15 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import model.Cliente;
 import model.Pessoa;
 
+
 @MultipartConfig
 @WebServlet(name = "CadastrarCliente", urlPatterns = {"/CadastrarCliente"})
 public class CadastrarCliente extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-       
+        response.setContentType("text/html;charset=UTF-8");    
     }
 
     @Override
@@ -35,8 +34,9 @@ public class CadastrarCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
          try {
-            
+            request.setCharacterEncoding("UTF-8");
             int idCliente = request.getParameter("idpessoa").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idpessoa"));
             
             request.getRequestDispatcher("imagem").include(request, response);

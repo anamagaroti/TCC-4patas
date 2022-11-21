@@ -37,7 +37,7 @@ public class imagem extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
-
+            request.setCharacterEncoding("UTF-8");
             String caminho = "C:/Users/ficav/OneDrive/Área de Trabalho/4patas/web/imagem" + "/";
 
             File diretorio = new File(caminho);

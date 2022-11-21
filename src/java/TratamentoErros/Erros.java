@@ -4,6 +4,11 @@ import javax.swing.JOptionPane;
 
 public class Erros {
     
+    public void erroAdocao(){
+        JOptionPane.showMessageDialog(null, 
+                         "Esse pet esta em análise", 
+                         "Erro ao adotar", JOptionPane.ERROR_MESSAGE);
+    }
     public void confirmarSenha(){
         JOptionPane.showMessageDialog(null, 
                          "Senha e confirmar senha estão diferentes", 
