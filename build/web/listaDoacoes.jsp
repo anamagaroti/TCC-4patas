@@ -18,7 +18,7 @@
         <div class="row row-cols-2 row-cols-md-3 col-10">
             <%
                 for (Pet pet : lista) {
-                if(pet.isAdocao() == false){
+                if(pet.isDoar() == false){
             %>
             <div class="col">
                 <div class="card">            
@@ -28,7 +28,7 @@
                     <p class="card-text"><%=pet.getPessoa().getNomePessoa()%></p>
                     <p hidden><%=pet.getPessoa().getIdPessoa()%></p>
                     <!-- Button trigger modal -->
-                    <a class="btn-lista" href="consultarPet?idPet=<%=pet.getIdPet()%>">
+                    <a class="btn-lista" href="consultarDoacoes?idDoacao=<%=pet.getIdPet()%>">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Ver mais 
                         </button>  

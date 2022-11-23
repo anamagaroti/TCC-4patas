@@ -39,13 +39,15 @@
             sexopet varchar not null,
             portepet varchar not null,
             observacoes varchar not null,
-            adocao boolean not null
+            adocao boolean not null,
+            doado boolean not null
         );
 
         create table Adocao(
             idAdocao serial not null primary key,
             idPessoa int not null references pessoa(idpessoa),
-            idPet int not null references pet(idpet)         
+            idPet int not null references pet(idpet),
+            adotado boolean not null
         );
 
         create table reclamacao(
@@ -110,24 +112,24 @@
 
         -- PROCEDURE CADASTRO E CONSULTA DE PET;
 
-         create or replace procedure cadastrarpet(id_pet int, id_pessoa int, nome_img varchar, nome_pet varchar, raca_pet varchar, idade_pet varchar, especie_pet varchar, cores_pet varchar, sexo_pet varchar, porte_pet varchar, observacoes_pet varchar, adocao_pet boolean) as $$
+         create or replace procedure cadastrarpet(id_pet int, id_pessoa int, nome_img varchar, nome_pet varchar, raca_pet varchar, idade_pet varchar, especie_pet varchar, cores_pet varchar, sexo_pet varchar, porte_pet varchar, observacoes_pet varchar, adocao_pet boolean, doar_pet boolean) as $$
             begin
                 if id_pet > 0 then
-                    update pet set idpessoa = id_pessoa, nomeimg = nome_img, nomePet = nome_pet, racaPet = raca_pet, idadePet = idade_pet, especiePet = especie_pet, coresPet = cores_pet, sexoPet = sexo_pet, portePet = porte_pet, observacoes = observacoes_pet, adocao = adocao_pet where idPet = id_pet;
+                    update pet set idpessoa = id_pessoa, nomeimg = nome_img, nomePet = nome_pet, racaPet = raca_pet, idadePet = idade_pet, especiePet = especie_pet, coresPet = cores_pet, sexoPet = sexo_pet, portePet = porte_pet, observacoes = observacoes_pet, adocao = adocao_pet, doar = doar_pet where idPet = id_pet;
                 else
-                    insert into pet values(default, id_pessoa, nome_img, nome_pet, raca_pet, idade_pet, especie_pet, cores_pet, sexo_pet, porte_pet, observacoes_pet, adocao_pet);
+                    insert into pet values(default, id_pessoa, nome_img, nome_pet, raca_pet, idade_pet, especie_pet, cores_pet, sexo_pet, porte_pet, observacoes_pet, adocao_pet, doar_pet);
                 end if;
             end;
         $$ language plpgsql;
 
         -- PROCEDURE CADASTRO E CONSULTA DE ADOÇÃO;
         
-        create or replace procedure cadastraradocao(id_adocao int, id_pessoa int, id_pet int) as $$
+        create or replace procedure cadastraradocao(id_adocao int, id_pessoa int, id_pet int, adotado_adocao boolean) as $$
             begin
                 if id_adocao > 0 then
-                    update adocao set idpessoa = id_pessoa, idpet = id_pet where idAdocao = id_adocao;
+                    update adocao set idpessoa = id_pessoa, idpet = id_pet, adotado = adotado_adocao where idAdocao = id_adocao;
                 else
-                    insert into adocao values(default, id_pessoa, id_pet);
+                    insert into adocao values(default, id_pessoa, id_pet, adotado_adocao);
                 end if;
             end;
         $$ language plpgsql;
@@ -158,3 +160,12 @@ call cadastrarcliente(0, 'imagem', 'marta', '4747474747474', '45454555', '157550
 
  CALL cadastrarPet(1,'ana','vira-lata','2anos', 'gata', 'preto e branco', 'femea', 'pequena', 'linda, cheirosa, carinhosa e obediente');
 
+
+**ideias**
+
+criarei mais uma variavel boolean na tabela de pets para a confirmação do cadastro
+
+                                E
+
+criarei uma variavel boolean na tabela de adocao para  quando clicar em confirmar 
+tornala true para sumir da lista de pets para adoção. 

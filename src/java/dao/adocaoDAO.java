@@ -23,7 +23,7 @@ public class adocaoDAO implements DAOGenerica {
 
     @Override
     public void cadastrar(Object objeto) throws SQLException {
-        String sql = "call cadastrarAdocao(?,?,?)";
+        String sql = "call cadastrarAdocao(?,?,?,?)";
         Adocao adocao = (Adocao) objeto;
         PreparedStatement stmt = null;
         try {
@@ -31,6 +31,7 @@ public class adocaoDAO implements DAOGenerica {
             stmt.setInt(1, adocao.getIdAdocao());
             stmt.setInt(2, adocao.getPessoa().getIdPessoa());
             stmt.setInt(3, adocao.getPet().getIdPet());
+            stmt.setBoolean(4, adocao.isAdotado());
 
             stmt.execute();
         } catch (SQLException ex) {
@@ -42,11 +43,11 @@ public class adocaoDAO implements DAOGenerica {
 
     @Override
     public Object consultar(int codigo) throws SQLException {
-        String sql = "select adocao.idadocao, adocao.idpessoa, adocao.idpet, p.nomeimg, p.nomepet, p.racapet, p.idadepet, p.especiepet,\n"
-                + "p.corespet, p.sexopet, p.portepet, p.observacoes,\n"
+        String sql = "select adocao.idadocao, adocao.idpessoa, adocao.idpet, adocao.adotado,"
+                + "p.nomeimg, p.nomepet, p.racapet, p.idadepet, p.especiepet,p.corespet, p.sexopet, p.portepet, p.observacoes,\n"
                 + "pe.nomeimg, pe.nomepessoa, pe.cpfpessoa, pe.datanascimentopessoa, pe.ceppessoa, pe.telefonepessoa, pe.emailpessoa, pe.generopessoa\n"
                 + "from adocao inner join pet p on p.idpet = adocao.idpet \n"
-                + "inner join pessoa pe on pe.idpessoa = adocao.idpessoa where adocao.idadocao = ? ";
+                + "inner join pessoa pe on pe.idpessoa = adocao.idpessoa where adocao.idadocao = ?";
         Adocao adocao = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -58,7 +59,8 @@ public class adocaoDAO implements DAOGenerica {
                 adocao = new Adocao(
                         rs.getInt("idAdocao"),
                         (Pessoa) new PessoaDAO().adotar(rs.getInt("idpessoa")),
-                        (Pet) new PetDAO().consultar(rs.getInt("idpet"))
+                        (Pet) new PetDAO().consultar(rs.getInt("idpet")),
+                        rs.getBoolean("adotado")
                 );
                 Pet pet = new Pet();
                 pet.getPessoa(rs.getInt("idpessoa"));
@@ -91,7 +93,7 @@ public class adocaoDAO implements DAOGenerica {
 
     @Override
     public List<Object> listar() throws SQLException {
-        String sql = "select adocao.idadocao, adocao.idpessoa, adocao.idpet, p.nomeimg, p.nomepet, pe.idpessoa, pe.nomepessoa\n"
+        String sql = "select adocao.idadocao, adocao.idpessoa, adocao.idpet, p.nomeimg, p.nomepet, p.adocao, pe.idpessoa, pe.nomepessoa\n"
                 + "from adocao inner join pet p on p.idpet = adocao.idpet \n"
                 + "inner join pessoa pe on pe.idpessoa = p.idpessoa";
         List<Object> lista = new ArrayList<>();
@@ -109,6 +111,7 @@ public class adocaoDAO implements DAOGenerica {
                 Pet pet = new Pet();
                 pet.getNomeImg(rs.getString("nomeimg"));
                 pet.getNomePet(rs.getString("nomepet"));
+                pet.isAdocao(rs.getBoolean("adocao"));
                 Pessoa pessoa = new Pessoa();
                 pessoa.getNomePessoa(rs.getString("nomepessoa"));
                 lista.add(adocao);
@@ -125,7 +128,7 @@ public class adocaoDAO implements DAOGenerica {
 
     @Override
     public void excluir(int adotar) throws SQLException {
-        String sql = "delete from adocao where idadocao = ?";
+        String sql = "delete from adocao where idpet = ?";
         PreparedStatement stmt = null;
         try {
             stmt = conexao.prepareStatement(sql);

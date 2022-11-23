@@ -29,12 +29,13 @@ public class CadastrarAdocao extends HttpServlet {
                 ? 0 : Integer.parseInt(request.getParameter("idAdocao"));
         int idPet = Integer.parseInt(request.getParameter("idPet"));
         int idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
+        
         try {
-            Adocao adocao = new Adocao(idAdocao, new Pessoa(idPessoa), new Pet(idPet));
+            Adocao adocao = new Adocao(idAdocao, new Pessoa(idPessoa), new Pet(idPet), false);
 
             adocaoDAO adocaodao = new adocaoDAO();
             
-                adocaodao.cadastrar(adocao);
+            adocaodao.cadastrar(adocao);
             
             request.setAttribute("mensagem", "Adoção gravada com sucesso!");
         } catch (SQLException | ClassNotFoundException ex) {

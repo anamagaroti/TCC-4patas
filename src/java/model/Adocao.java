@@ -5,9 +5,17 @@ public class Adocao{
     private int idAdocao;
     private Pessoa pessoa;
     private Pet pet;
+    private boolean adotado;
 
 
-    public Adocao(int idAdocao, Pessoa pessoa, Pet pet) {
+    public Adocao(int idAdocao, Pessoa pessoa, Pet pet, boolean adotado) {
+        this.idAdocao = idAdocao;
+        this.pessoa = pessoa;
+        this.pet = pet;
+        this.adotado = adotado;
+    }
+    
+     public Adocao(int idAdocao, Pessoa pessoa, Pet pet) {
         this.idAdocao = idAdocao;
         this.pessoa = pessoa;
         this.pet = pet;
@@ -39,5 +47,13 @@ public class Adocao{
 
     public void setPet(Pet pet) {
         this.pet = pet;
+    }
+
+    public boolean isAdotado() {
+        return adotado;
+    }
+
+    public void setAdotado(boolean adotado) {
+        this.adotado = adotado;
     }
 }

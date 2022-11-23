@@ -1,6 +1,7 @@
 package controller.Adocao;
 
 import dao.PetDAO;
+import dao.adocaoDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,6 +21,11 @@ public class recusado extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             int idPet = Integer.parseInt(request.getParameter("idPet"));
+            
+            adocaoDAO adocaodao = new adocaoDAO();
+            
+            adocaodao.excluir(idPet);
+            
             PetDAO petdao = new PetDAO();
 
             Pet pet = (Pet) petdao.consultar(idPet);

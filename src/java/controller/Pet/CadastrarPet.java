@@ -24,22 +24,22 @@ public class CadastrarPet extends HttpServlet {
         
         try {
             request.setCharacterEncoding("UTF-8");
-            int idPet = request.getParameter("idpet").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idpet"));
+            int idPet = request.getParameter("idPet").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idPet"));
             int idPessoa = Integer.parseInt(request.getParameter("idPessoa"));
-            String nomePet = request.getParameter("nomepet");
-            String racaPet = request.getParameter("racapet");
-            String idadePet = request.getParameter("idadepet");
-            String especiePet = request.getParameter("especiepet");
-            String coresPet = request.getParameter("corespet");
-            String sexoPet = request.getParameter("sexopet");
-            String portePet = request.getParameter("portepet");
+            String nomePet = request.getParameter("nomePet");
+            String racaPet = request.getParameter("racaPet");
+            String idadePet = request.getParameter("idadePet");
+            String especiePet = request.getParameter("especiePet");
+            String coresPet = request.getParameter("coresPet");
+            String sexoPet = request.getParameter("sexoPet");
+            String portePet = request.getParameter("portePet");
             String observacoes = request.getParameter("observacoes");
             
             request.getRequestDispatcher("imagem").include(request, response);
             String nomeImg = (String) request.getAttribute("nomeImg");
             
            Pet pet = new Pet(idPet, new Pessoa(idPessoa), nomeImg, nomePet, racaPet, 
-                   idadePet, especiePet, coresPet, sexoPet, portePet, observacoes, false);
+           idadePet, especiePet, coresPet, sexoPet, portePet, observacoes, false, false); //doar é a logica do confirmação de cadastro.
             
            PetDAO petDAO = new PetDAO();
             

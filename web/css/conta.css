@@ -1,11 +1,12 @@
 @import "./Cores.css";
 body{
     background: -webkit-linear-gradient(left, var(--Nav), rgb(97, 46, 46));
-    overflow: hidden; 
+    overflow: scroll;
+    overflow-x: hidden;
     display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .titulo{
     font-size: 25px !important;
@@ -18,20 +19,15 @@ align-items: center;
 }
 .container{
     flex-direction: row;
-    justify-content: center;
-position: relative;
+    position: relative;
     align-items: center;
 }
 .file:hover{
-background-color: var(--Nav) !important;
+    background-color: var(--Nav) !important;
 }
 .emp-profile{
-    max-width:50em !important;
-    max-height: 37em;
-    padding: 3%;
-margin-top: 50px;
-
-
+    max-width:50em;
+    padding: 1%;
     background: #fff;
 }
 .profile-img{

@@ -18,9 +18,9 @@ public class listarPet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            
+        
         String pagina = request.getParameter("pagina") == null ? "index" : request.getParameter("pagina");
-        try {           
+        try {
             String tipoListagem = request.getParameter("todos");
 
             if ("cachorro".equals(tipoListagem)) {
@@ -35,15 +35,11 @@ public class listarPet extends HttpServlet {
             }
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(listarPet.class.getName()).log(Level.SEVERE, null, ex);
-        }       
-        if(pagina.equals("index")){
+        }
+        if (pagina.equals("index")) {
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("adotados.jsp").forward(request, response);
         }
-            
-            
-        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -1,3 +1,4 @@
+<%@page import="model.Adocao"%>
 <%@page import="model.Pet"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,19 +12,20 @@
     <body>
         <h1>Adotados</h1>
 
-        <% List<Pet> lista = (List<Pet>) request.getAttribute("pets"); %>
+        <% List<Adocao> lista = (List<Adocao>) request.getAttribute("adocoes"); %>
 
         <div class="row row-cols-2 row-cols-md-3 col-10">
             <%
-                for (Pet pet : lista) {
-                    if (pet.isAdocao() == true) {
+                for (Adocao ado : lista) {
+                    if (ado.isAdotado() == true) {
             %>
             <div class="col">
                 <div class="card">            
-                    <img class="card-img-top" src="<%= (String) request.getContextPath() + "/imagem/" + pet.getNomeImg()%>"/> 
+                    <img class="card-img-top" src="<%= (String) request.getContextPath() + "/imagem/" + ado.getPet().getNomeImg()%>"/> 
                     <div class="card-body">
-                        <h5 class="card-title"><%= pet.getNomePet()%></h5>
-                        <p class="card-text"><%= pet.getObservacoes()%></p>
+                        <h5 class="card-title"><%= ado.getPet().getNomePet()%></h5>
+                        <p class="card-text"><%= ado.getPet().getObservacoes()%></p>
+                        <p class="card-text">Adotado por: <%=ado.getPessoa().getNomePessoa()%></p>
                     </div>
                 </div>
             </div>

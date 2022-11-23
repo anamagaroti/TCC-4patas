@@ -4,13 +4,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" href="img/logo_navegador.jpeg">
+        <title>Confirmação de Adoção</title>
     </head>
     <body>
-        <h1>Informações do pet e cliente</h1>
+        <h1 style="text-align: center;">Informações do pet e cliente</h1>
         <div class="row row-cols-2 row-cols-md-3 col-10">
-            <div class="col">
-                <div class="card">            
+            <div class="col" style="display: flex; justify-content: center;">
+                <div class="card  cardes">            
                     <img width="150rem" src="imagem/${adocao.pet.nomeImg}" 
                          <div class="card-body">
                     <h5 class="card-title">Nome: ${adocao.pet.nomePet}</h5>
@@ -38,15 +39,17 @@
         <%
             Adocao adocao = (Adocao) request.getAttribute("adocao");
         %>
-        <a class="btn-lista" href="recusado?idPet=<%= adocao.getPet().getIdPet()%>">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Recusar Adoção 
-            </button>  
-        </a>
-        <a class="btn-lista" href="listarPet?idpet=<%= adocao.getPet().getIdPet()%>">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Confirmar Adoção 
-            </button>  
-        </a>
+        <div style="display: flex; justify-content: center; padding: 10px;">
+            <a class="btn-lista" href="recusado?idPet=<%= adocao.getPet().getIdPet()%>">
+                <button type="button" style="margin-left:10px;"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Recusar Adoção 
+                </button>  
+            </a>
+            <a class="btn-lista" href="listarAdocao?idAdocao=<%= adocao.getIdAdocao()%>">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Confirmar Adoção 
+                </button>  
+            </a>
+        </div>
     </body>
 </html>

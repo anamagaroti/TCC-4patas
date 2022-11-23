@@ -18,7 +18,9 @@ public class consultarPet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8"); 
+        
          try{            
+             
             int idPet = Integer.parseInt(request.getParameter("idpet"));                    
             PetDAO petdao = new PetDAO();      
             

@@ -90,9 +90,9 @@
                             <li style="list-style-type: none;" class="dropdown">
                                 <ul class="dropdown-menu" aria-labelledby="perfil"> 
                                     <li><a class="dropdown-item" href="conta.jsp">Perfil</a></li>
-                                    <%
-                                        if ("funcionario".equals(usuario.getLogouPessoa())) {
-                                    %>
+                                        <%
+                                            if ("funcionario".equals(usuario.getLogouPessoa())) {
+                                        %>
                                     <li><a class="dropdown-item" href="ListaDoacoes">Confirmação de doações</a></li>
                                     <li><a class="dropdown-item" href="listarAdocao">Pedidos de adoção</a></li>
                                     <li><a class="dropdown-item" href="listarReclamacao">Reclamações</a></li>
@@ -167,17 +167,20 @@
         </div>
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="First group">
-                <button href="listarPet" class="btn btn_todos btn-outline" id="todos" value="todos" id="botao" onclick="Click('todos')">Todos</button>
-                <button href="listarPet?tipoListagem=cachorro"  class="btn btn-outline" id="cachorro" value="cachorro" onclick="Click('cachorro')"> Cachorro</button>
-                <button href="listarPet?tipoListagem=gato" class="btn btn-outline" id="gato" value="gato" onclick="Click('gato')">Gato</button>
+                <button type="button" class="btn btn_todos btn-outline" id="todos" value="todos" id="botao " onclick="Click('todos')">Todos</button>
+                <button type="button" class="btn btn-outline" id="cachorro" value="cachorro" onclick="Click('cachorro')"> Cachorro</button>
+                <button type="button" class="btn btn-outline" id="gato" value="gato" onclick="Click('gato')">Gato</button>
             </div>
         </div>
-        <% List<Pet> lista = (List<Pet>) request.getAttribute("pets"); %>
+        <% List<Pet> lista = (List<Pet>) request.getAttribute("pets");
+            if (lista != null) {
+        %>
 
         <div class="row row-cols-2 row-cols-md-3 col-10">
             <%
                 for (Pet pet : lista) {
-                if(pet.isAdocao() == false){
+                    if (pet.isDoar() == true) {
+                        if (pet.isAdocao() == false) {
             %>
             <div class="col">
                 <div class="card">            
@@ -195,9 +198,14 @@
                 </div>
             </div>
             <%
-                }}
+                        }
+                    }
+                }
             %> 
         </div>   
+        <%
+            }
+        %>
 
         <!-- Modal -->  
 
@@ -219,7 +227,7 @@
             </ul>
         </nav>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        <script src="inicial.js" ></script>
+        <script src="js/inicial.js" ></script>
         <script src="js/listar.js"></script>
     </body>
 </html>

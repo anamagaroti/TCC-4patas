@@ -1,0 +1,24 @@
+@import "./Cores.css";
+.titulo{
+    text-align: center;
+    
+}
+.body{
+background-color: #EDD4AB;
+}
+
+.email{
+    position: relative;
+    left: 50px;
+}
+.emailg{
+    position: relative;
+    left: 60px;}
+
+.reclamar{
+    display: block;
+    
+}
+.reclamarg{
+    display: block;
+}
