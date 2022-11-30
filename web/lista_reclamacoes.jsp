@@ -8,6 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reclamações</title>
+        <link rel="shortcut icon" href="img/logo_navegador.jpeg">
         <link rel="stylesheet" href="css/stylereclamação.css">
 
     </head>

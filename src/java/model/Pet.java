@@ -33,8 +33,7 @@ public class Pet {
         this.adocao = adocao;
         this.doar = doar;
     }
-
-    public Pet(int idPet, String nomeImg, String nomePet, String racaPet, String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes, boolean adocao) {
+    public Pet(int idPet, String nomeImg, String nomePet, String racaPet, String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes, boolean adocao, boolean doar) {
         this.idPet = idPet;
         this.nomeImg = nomeImg;
         this.nomePet = nomePet;
@@ -46,7 +45,9 @@ public class Pet {
         this.portePet = portePet;
         this.observacoes = observacoes;
         this.adocao = adocao;
+        this.doar = doar;
     }
+
     public Pet(int idPet, String nomeImg, String nomePet, String racaPet, String idadePet, String especiePet, String coresPet, String sexoPet, String portePet, String observacoes) {
         this.idPet = idPet;
         this.nomeImg = nomeImg;
@@ -143,8 +144,9 @@ public class Pet {
         return especiePet;
     }
 
-    public void setEspeciePet(String especiePet) {
+    public String setEspeciePet(String especiePet) {
         this.especiePet = especiePet;
+        return especiePet;
     }
 
     public String getSexoPet() {

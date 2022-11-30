@@ -5,13 +5,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="img/logo_navegador.jpeg">
+
         <title>Confirmação de Adoção</title>
     </head>
-    <body>
+    <body style="background-color: #EDD4AB">
         <h1 style="text-align: center;">Informações do pet e cliente</h1>
-        <div class="row row-cols-2 row-cols-md-3 col-10">
-            <div class="col" style="display: flex; justify-content: center;">
-                <div class="card  cardes">            
+        <div>
+            <div class="col" style="display: flex; justify-content: space-evenly;">
+                <div style="border: solid black 1px; width: 250px;  padding: 20px;  
+                     background-color: #fff; border-radius: 5px;" class="card">            
                     <img width="150rem" src="imagem/${adocao.pet.nomeImg}" 
                          <div class="card-body">
                     <h5 class="card-title">Nome: ${adocao.pet.nomePet}</h5>
@@ -23,7 +25,8 @@
                     <p class="card-text">Porte: ${adocao.pet.portePet}</p>
                     <p class="card-text">Observações: ${adocao.pet.observacoes}</p>
                 </div>
-                <div class="card">            
+                <div style="margin-left: 20px; border: solid black 1px; width: 250px; padding: 20px;  
+                     background-color: #fff; border-radius: 5px;">            
                     <img width="150rem" src="imagem/${adocao.pessoa.nomeImg}" 
                          <div class="card-body">
                     <h5 class="card-title">Nome: ${adocao.pessoa.nomePessoa}</h5>
@@ -39,14 +42,14 @@
         <%
             Adocao adocao = (Adocao) request.getAttribute("adocao");
         %>
-        <div style="display: flex; justify-content: center; padding: 10px;">
+        <div style="display: flex; justify-content: center; padding: 10px; margin-top: 25px;">
             <a class="btn-lista" href="recusado?idPet=<%= adocao.getPet().getIdPet()%>">
-                <button type="button" style="margin-left:10px;"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button"style="margin-left:10px; padding: 8px; border-radius: 5px;  background-color: rgb(91, 109, 54);">
                     Recusar Adoção 
                 </button>  
             </a>
-            <a class="btn-lista" href="listarAdocao?idAdocao=<%= adocao.getIdAdocao()%>">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a class="btn-lista" href="AdocaoConfirmada?idAdocao=<%=adocao.getIdAdocao()%>">
+                <button type="button" style="border-radius: 5px; padding: 8px; margin-left:10px; background-color: rgb(91, 109, 54);">
                     Confirmar Adoção 
                 </button>  
             </a>

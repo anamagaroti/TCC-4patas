@@ -35,7 +35,7 @@ public class CadastrarFuncionario extends HttpServlet {
         processRequest(request, response);
         
           try {
-            request.setCharacterEncoding("UTF-8");
+           request.setCharacterEncoding("UTF-8");           
             
             int idFuncionario = request.getParameter("idFuncionario").isEmpty() 
                     ? 0 : Integer.parseInt(request.getParameter("idFuncionario"));

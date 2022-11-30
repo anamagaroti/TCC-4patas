@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Pessoa;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Pessoa;
 import model.Pet;
 
 public class PetDAO implements DAOGenerica {
@@ -30,8 +30,8 @@ public class PetDAO implements DAOGenerica {
             stmt.setInt(1, pet.getIdPet());
             stmt.setInt(2, pet.getPessoa().getIdPessoa());
             stmt.setString(3, pet.getNomeImg());
-            stmt.setString(4, pet.getNomePet());
-            stmt.setString(5, pet.getRacaPet());
+             stmt.setString(4, pet.getNomePet());
+             stmt.setString(5, pet.getRacaPet());
             stmt.setString(6, pet.getIdadePet());
             stmt.setString(7, pet.getEspeciePet());
             stmt.setString(8, pet.getCoresPet());
@@ -137,7 +137,9 @@ public class PetDAO implements DAOGenerica {
                         rs.getString("nomepet"), rs.getString("racapet"),
                         rs.getString("idadepet"), rs.getString("especiepet"),
                         rs.getString("corespet"), rs.getString("sexopet"),
-                        rs.getString("portepet"), rs.getString("observacoes"));
+                        rs.getString("portepet"), rs.getString("observacoes"),
+                        rs.getBoolean("adocao"), rs.getBoolean("doado")
+                );
                 lista.add(pet);
             }
         } catch (SQLException ex) {
@@ -161,7 +163,9 @@ public class PetDAO implements DAOGenerica {
                         rs.getString("nomepet"), rs.getString("racapet"),
                         rs.getString("idadepet"), rs.getString("especiepet"),
                         rs.getString("corespet"), rs.getString("sexopet"),
-                        rs.getString("portepet"), rs.getString("observacoes"));
+                        rs.getString("portepet"), rs.getString("observacoes"),
+                        rs.getBoolean("adocao"), rs.getBoolean("doado")
+                );
                 lista.add(pet);
             }
         } catch (SQLException ex) {

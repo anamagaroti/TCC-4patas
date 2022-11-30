@@ -5,6 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/logo_navegador.jpeg">
         <link href="css/styleCadastrarPet.css" rel="stylesheet" type="text/css"/>
         <link href="css/cadastrarPet2.css" rel="stylesheet" type="text/css"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
@@ -34,7 +35,7 @@
                                 response.sendRedirect("login_cadastro.jsp");
                             }
                         %>
-                        <img class="icone" src="img/icone pet.svg">
+                        <img class="icone" src="img/logo-cadastro.png" alt=""/>
                         <h2 class="title">Bem vindo</h2>
                         <div class="Enviar">
                             <label class="Label_arq" for="arquivo">Adicionar foto
@@ -46,7 +47,7 @@
                         <br>
                         <div class="input-div  pass">	
                             <div class="div">
-                                <h5 class="tx">Nome_Pet</h5>
+                                <h5 class="tx">Nome</h5>
                                 <input type="text" class="input" name="nomePet" value="${pet.nomePet}" required/>
                             </div>
                         </div>

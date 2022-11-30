@@ -5,6 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reclamação usuário</title>
+        <link rel="shortcut icon" href="img/logo_navegador.jpeg">
         <link rel="stylesheet" href="css/stylereclamar">
     </head>
     <body     style="background-color: blanchedalmond; display: grid;

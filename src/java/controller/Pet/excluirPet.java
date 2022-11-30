@@ -25,7 +25,7 @@ public class excluirPet extends HttpServlet {
             request.setAttribute("mensagem", ex.getMessage());
         }
 
-        request.getRequestDispatcher("listarPet").forward(request, response);
+        request.getRequestDispatcher("ListaDoacoes").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -93,7 +93,7 @@ public class adocaoDAO implements DAOGenerica {
 
     @Override
     public List<Object> listar() throws SQLException {
-        String sql = "select adocao.idadocao, adocao.idpessoa, adocao.idpet, p.nomeimg, p.nomepet, p.adocao, pe.idpessoa, pe.nomepessoa\n"
+        String sql = "select adocao.idadocao, adocao.idpessoa, adocao.idpet, adocao.adotado, p.nomeimg, p.nomepet, p.adocao, pe.idpessoa, pe.nomepessoa\n"
                 + "from adocao inner join pet p on p.idpet = adocao.idpet \n"
                 + "inner join pessoa pe on pe.idpessoa = p.idpessoa";
         List<Object> lista = new ArrayList<>();
@@ -106,7 +106,8 @@ public class adocaoDAO implements DAOGenerica {
                 Adocao adocao = new Adocao(
                         rs.getInt("idadocao"),
                         (Pessoa) new PessoaDAO().adotar(rs.getInt("idpessoa")),
-                        (Pet) new PetDAO().consultar(rs.getInt("idpet"))
+                        (Pet) new PetDAO().consultar(rs.getInt("idpet")),
+                        rs.getBoolean("adotado")
                 );
                 Pet pet = new Pet();
                 pet.getNomeImg(rs.getString("nomeimg"));

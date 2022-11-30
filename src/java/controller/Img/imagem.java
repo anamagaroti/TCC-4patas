@@ -61,7 +61,8 @@ public class imagem extends HttpServlet {
                     File filePath = new File(caminho, filename);
 
                     if (!filePart.getSubmittedFileName().endsWith(".png") && !filePart.getSubmittedFileName().endsWith(".jpg") 
-                            && !filePart.getSubmittedFileName().endsWith(".jpeg")) {
+                            && !filePart.getSubmittedFileName().endsWith(".jpeg") && 
+                            !filePart.getSubmittedFileName().endsWith(".webp")) {
                         request.setAttribute("erro", "Seu arquivo não foi aceito");
                     } else {
 

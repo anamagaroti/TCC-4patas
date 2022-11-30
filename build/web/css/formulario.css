@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
-@import "./Cores.css";
+
 * {
     padding: 0;
     margin: 0;
@@ -15,28 +15,20 @@ body {
     align-items: center;
     background: rgba(0, 0, 0, 0.521);
 }
-.title{
-margin-left: 25%;
-} 
+
 h1 {
     color: rgb(0, 0, 0);
-    margin: 0 auto;
 }
 
 .container {
-    width: 80%;
-    height: 80vh;
     display: flex;
-    border-style: solid;
-    border-width: 1.5px;
-    border-color: rgba(144, 211, 196, 0.829);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.479);
-    overflow: hidden;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
 }
 
 .form-image {
     width: 50%;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,14 +36,13 @@ h1 {
     padding: 1rem;
 }
 
-.form-image > .dogs{
-    width: 40.2em;
-    object-fit: cover;
+.form-image img {
+    width: 31rem;
 }
 
-.formulario {
+.form {
     width: 50%;
-overflow: hidden;
+overflow: scroll;
 overflow-x: hidden;
     flex-direction: column;
     justify-content: center;
@@ -119,7 +110,7 @@ overflow-x: hidden;
 }
 
 .input-box input:focus-visible {
-    outline: 1px solid var(--Nav);
+    outline: 1px solid #6c63ff;
 }
 
 .input-box label,
@@ -127,7 +118,7 @@ overflow-x: hidden;
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000;
-   
+    text-align: center;
 }
 
 .input-box input::placeholder {
@@ -160,14 +151,14 @@ overflow-x: hidden;
     width: 100%;
     margin-top: 1rem;
     border: none;
-    background-color: var(--Detalhes);
+    background-color: cadetblue;
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .continue-button button:hover {
-    background-color:  var(--Nav);
+    background-color: #6b63fff1;
 }
 
 .continue-button button a {
@@ -175,4 +166,50 @@ overflow-x: hidden;
     font-size: 0.93rem;
     font-weight: 500;
     color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 1330px) {
+    .form-image {
+        display: none;
+    }
+
+    .container {
+        width: 50%;
+    }
+
+    .form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1064px) {
+    .container {
+        width: 90%;
+        height: auto;
+    }
+
+    .input-group {
+        flex-direction: column;
+        z-index: 5;
+        padding-right: 5rem;
+        max-height: 10rem;
+        overflow-y: scroll;
+        flex-wrap: nowrap;
+    }
+
+    .gender-inputs {
+        margin-top: 2rem;
+    }
+
+    .gender-group {
+        flex-direction: column;
+    }
+
+    .gender-title h6 {
+        margin: 0;
+    }
+
+    .gender-input {
+        margin-top: 0.5rem;
+    }
 }

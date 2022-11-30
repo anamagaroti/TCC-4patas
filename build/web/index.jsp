@@ -41,7 +41,7 @@
                             <a class="nav-link" href="CadastrarPet.jsp">Doar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="listarPet?pagina=adotados">Adotados</a>
+                            <a class="nav-link" href="ListarAdotados?pagina=adotados">Adotados</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -167,12 +167,13 @@
         </div>
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn_todos btn-outline" id="todos" value="todos" id="botao " onclick="Click('todos')">Todos</button>
-                <button type="button" class="btn btn-outline" id="cachorro" value="cachorro" onclick="Click('cachorro')"> Cachorro</button>
-                <button type="button" class="btn btn-outline" id="gato" value="gato" onclick="Click('gato')">Gato</button>
+                <button type="button" class="btn btn_todos btn-outline" id="todos" value="todos" onclick="Click('todos'); redireciona('listarPet', 'tipoListagem', 'todos');">Todos</button>
+                <button type="button" class="btn  btn-outline" id="cachorro" value="cachorro" onclick="Click('cachorro'); redireciona('listarPet', 'tipoListagem', 'cachorro');"> Cachorro</button>
+                <button type="button" class="btn btn-outline" id="gato" value="gato" onclick="Click('gato'); redireciona('listarPet', 'tipoListagem', 'gato');">Gato</button>
             </div>
         </div>
-        <% List<Pet> lista = (List<Pet>) request.getAttribute("pets");
+        <%
+            List<Pet> lista = (List<Pet>) request.getAttribute("pets");
             if (lista != null) {
         %>
 
@@ -183,7 +184,7 @@
                         if (pet.isAdocao() == false) {
             %>
             <div class="col">
-                <div class="card">            
+                <div class="card" style="height: 22rem;">            
                     <img class="card-img-top" src="<%= (String) request.getContextPath() + "/imagem/" + pet.getNomeImg()%>"/> 
                     <div class="card-body">
                         <h5 class="card-title"><%= pet.getNomePet()%></h5>

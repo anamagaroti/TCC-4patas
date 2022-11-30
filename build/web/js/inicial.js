@@ -16,6 +16,10 @@ function Click(btn) {
         document.getElementById('cachorro').classList.remove('btn_todos');
     }
 }
+
+function redireciona(servlet, nomeDoCampo, valorASerPassado){
+  location.href=servlet + "?" + nomeDoCampo + "=" +valorASerPassado;
+}               
 //btn-outline
 
 

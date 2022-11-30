@@ -1,19 +1,57 @@
-@import "./CoresLogin.css";
-body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    background-color: #EDD4AB;
+@import "../css/Cores.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+:root {
+    --font-style: 'Nunito Sans', sans-serif;
+}
+h1{
+text-align: center;
+margin-top: 3em;
+}
+body {
+    font-family: var(--font-style);
 }
 
-.container{
-    width: 800px;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    box-shadow: 2px 0px 5px 2px #fff;
-    color: #fff;
-    background-color: rgb(94, 50, 20);
+body {
+    background-color: var(--fundo);
+    margin-bottom: 10em;
+}
+#progress {
+    background-color: var(--Nav);
+    height: 12px;
+    width: 0;
+    position: fixed;
+    border-radius: 0 10px 10px 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+body::-webkit-scrollbar {
+    display: none;
+   }
+h4 {
+    width: 60%;
+    margin: auto;
+    margin-top: 5%;
+    color: black;
+  text-align: justify;
+    
+}
+.btn-primary{
+    margin-top: 7em;
+    background-color: var(--Nav) !important; 
+    border: solid 0;
+}
+.btn-primary:hover{
+background-color: var(--Detalhes) !important; 
+}
+.link{
+    padding-left: 15em;
+    padding-right: 15em;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+.link:hover{
+    color: white;
 }

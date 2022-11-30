@@ -7,8 +7,9 @@
         <link rel="stylesheet" href="css/styleCadastro_login.css">
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
         <link rel="shortcut icon" href="img/logo_navegador.jpeg">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-        <script src="js/buscaCep.js" type="text/javascript"></script>
+        
     </head>
 
     <body>
@@ -30,17 +31,16 @@
 
                     <span>Use seu E-mail para registrar</span>
                     <input enctype="multi-part/form-data" type="file" name="imagem" required>
-                    <input type="text" placeholder="Nome" required name="nomeCliente" />
-                    <input type="text" placeholder="Cpf" required name="cpfCliente" />
-                    <input type="date" placeholder="Data nascimento" name="dataNascimentoCliente" required />
-                    <input type="text" maxlength="9" id="cep" value="" placeholder="Cep" name="cepCliente" required />
-                    <input type="text" id="cidade" placeholder="Cidade" name="cidadeCliente" required />
-                    <input type="text" id="bairro" placeholder="Bairro" name="bairroCliente" required />
-                    <input type="text" id="ruaCliente" placeholder="Rua" name="ruaCliente" required />
-                    <input type="text" id="numero" placeholder="Número de sua casa" name="numeroCliente" required />
-                    <input type="text" id="complemento" placeholder="Complemento do seu endereço" name="complementoCliente"
-                           required />
-                    <label for="uf" name="estadoCliente">Estado</label>
+                    <input type="text" placeholder="Nome*" required name="nomeCliente" />
+                    <input type="text" maxlength="11" placeholder="CPF*" required name="cpfCliente" />
+                    <input type="date" placeholder="Data de nascimento*" name="dataNascimentoCliente" required />
+                    <input type="text" maxlength="9" id="cep" placeholder="CEP*" name="cepCliente" required />
+                    <input type="text" id="cidade" placeholder="Cidade*" name="cidadeCliente" required />
+                    <input type="text" id="bairro" placeholder="Bairro*" name="bairroCliente" required />
+                    <input type="text" id="ruaCliente" placeholder="Rua*" name="ruaCliente" required />
+                    <input type="text" id="numero" placeholder="Número*" name="numeroCliente" required />
+                    <input type="text" id="complemento" placeholder="Complemento" name="complementoCliente"/>
+                    <label for="uf" name="estadoCliente">Estado*</label>
                     <select id="uf" name="estadoCliente">
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -70,13 +70,13 @@
                         <option value="SE">Sergipe</option>
                         <option value="TO">Tocantins</option>
                     </select>
-                    <input type="text" maxlength="9" placeholder="Telefone" name="telefoneCliente" required />
-                    <input type="email" placeholder="E-mail" name="emailCliente" required />
-                    <input type="password" minlength="4" placeholder="Senha" name="senhaCliente" required />
-                    <input type="password" placeholder="confirme sua senha" name="confirmarSenha" required />
+                    <input type="text" maxlength="11" placeholder="Telefone*" name="telefoneCliente" required />
+                    <input type="email" placeholder="E-mail*" name="emailCliente" required />
+                    <input type="password" minlength="4" placeholder="Senha*" name="senhaCliente" required />
+                    <input type="password" placeholder="confirme sua senha*" name="confirmarSenha" required />
                     <div class="gender-inputs">
                         <div class="gender-title">
-                            <h6>Gênero</h6>
+                            <h6>Gênero*</h6>
                         </div>
 
                         <div class="gender-group">
@@ -140,6 +140,7 @@
                 </div>
             </div>
         </div>
+        <script src="js/buscaCep.js" type="text/javascript"></script>
         <script src="js/script.js" charset="utf-8"></script>
     </body>
 

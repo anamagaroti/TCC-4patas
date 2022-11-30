@@ -38,10 +38,7 @@ public class CadastrarCliente extends HttpServlet {
          try {
             request.setCharacterEncoding("UTF-8");
             int idCliente = request.getParameter("idpessoa").isEmpty() ? 0 : Integer.parseInt(request.getParameter("idpessoa"));
-            
-            request.getRequestDispatcher("imagem").include(request, response);
-            String nomeImg = (String) request.getAttribute("nomeImg");
-            
+
             String nomePessoa = request.getParameter("nomeCliente");
             String cpfPessoa = request.getParameter("cpfCliente");
             String dataNascimentoPessoa = request.getParameter("dataNascimentoCliente");
@@ -57,7 +54,8 @@ public class CadastrarCliente extends HttpServlet {
             String senhaPessoa = request.getParameter("senhaCliente");
             String confirmarSenha = request.getParameter("confirmarSenha");
             String generoPessoa = request.getParameter("generoCliente");
-            
+            request.getRequestDispatcher("imagem").include(request, response);
+            String nomeImg = (String) request.getAttribute("nomeImg");
             
             Cliente cliente = new Cliente (idCliente, nomeImg, nomePessoa, cpfPessoa, dataNascimentoPessoa, cepPessoa, 
             cidadePessoa, bairroPessoa, ruaPessoa, numeroPessoa, complementoPessoa, estadoPessoa, telefonePessoa, 

@@ -4,7 +4,6 @@ import java.io.File;
 
 public class Pessoa {
     int idPessoa;
-    private String imagem;
     private String nomeImg;
     private String nomePessoa;
     private String cpfPessoa;  
@@ -131,15 +130,7 @@ public class Pessoa {
     public void setIdPessoa(int codigoPessoa) {
         this.idPessoa = codigoPessoa;
     }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
+    
     public String getNomeImg() {
         return nomeImg;
     }
@@ -184,16 +175,18 @@ public class Pessoa {
         return bairroPessoa;
     }
 
-    public void setBairroPessoa(String bairroPessoa) {
+    public String setBairroPessoa(String bairroPessoa) {
         this.bairroPessoa = bairroPessoa;
+        return bairroPessoa;
     }
 
     public String getRuaPessoa() {
         return ruaPessoa;
     }
 
-    public void setRuaPessoa(String ruaPessoa) {
+    public String setRuaPessoa(String ruaPessoa) {
         this.ruaPessoa = ruaPessoa;
+        return ruaPessoa;
     }
 
     public String getCepPessoa() {
@@ -208,48 +201,54 @@ public class Pessoa {
         return numeroPessoa;
     }
 
-    public void setNumeroPessoa(String numeroPessoa) {
+    public String setNumeroPessoa(String numeroPessoa) {
         this.numeroPessoa = numeroPessoa;
+        return numeroPessoa;
     }
 
     public String getComplementoPessoa() {
         return complementoPessoa;
     }
 
-    public void setComplementoPessoa(String complementoPessoa) {
+    public String setComplementoPessoa(String complementoPessoa) {
         this.complementoPessoa = complementoPessoa;
+        return complementoPessoa;
     }
 
     public String getCidadePessoa() {
         return cidadePessoa;
     }
 
-    public void setCidadePessoa(String cidadePessoa) {
+    public String setCidadePessoa(String cidadePessoa) {
         this.cidadePessoa = cidadePessoa;
+        return cidadePessoa;
     }
 
     public String getEmailPessoa() {
         return emailPessoa;
     }
 
-    public void setEmailPessoa(String emailPessoa) {
+    public String setEmailPessoa(String emailPessoa) {
         this.emailPessoa = emailPessoa;
+        return emailPessoa;
     }
 
     public String getEstadoPessoa() {
         return estadoPessoa;
     }
 
-    public void setEstadoPessoa(String estadoPessoa) {
+    public String setEstadoPessoa(String estadoPessoa) {
         this.estadoPessoa = estadoPessoa;
+        return estadoPessoa;
     }
 
     public String getGeneroPessoa() {
         return generoPessoa;
     }
 
-    public void setGeneroPessoa(String generoPessoa) {
+    public String setGeneroPessoa(String generoPessoa) {
         this.generoPessoa = generoPessoa;
+        return generoPessoa;
     }
     
     public String getTelefonePessoa(String string) {
@@ -266,8 +265,9 @@ public class Pessoa {
     public String getSenhaPessoa(){
         return senhaPessoa;
     }
-    public void setSenhaPessoa(String senhaPessoa){
+    public String setSenhaPessoa(String senhaPessoa){
         this.senhaPessoa = senhaPessoa;
+        return senhaPessoa;
     }
 
     public String getLogouPessoa() {
@@ -278,23 +278,28 @@ public class Pessoa {
         this.logouPessoa = logouPessoa;
     }
 
-    public void getCpfPessoa(String cpfpessoa) {
+    public String getCpfPessoa(String cpfpessoa) {
         this.cpfPessoa = cpfpessoa;
+        return cpfPessoa;
     }
 
-    public void getDataNascimentoPessoa(String data) {
+    public String getDataNascimentoPessoa(String data) {
         this.dataNascimentoPessoa = data;
+        return data;
     }
 
-    public void getCepPessoa(String cep) {
+    public String getCepPessoa(String cep) {
         this.cepPessoa = cep;
+        return cep;
     }
 
-    public void getEmailPessoa(String email) {
+    public String getEmailPessoa(String email) {
         this.emailPessoa = email;
+        return email;
     }
 
-    public void getGeneroPessoa(String genero) {
+    public String getGeneroPessoa(String genero) {
         this.generoPessoa = genero;
+        return genero;
     }
 }

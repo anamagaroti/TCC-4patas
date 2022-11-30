@@ -8,6 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset= UTF-8">
         <title>Pet - 4patas</title>
+        <link rel="shortcut icon" href="img/logo_navegador.jpeg">
         <link href="css/maisPet.css" rel="stylesheet" type="text/css"/>
     </head>
     <body> 
@@ -47,8 +48,10 @@
                         <p class="text">Observações: ${pet.observacoes}</p>
                     </div>
                     <div class="">
-                        <a href="listarPet" class="btn">Voltar</a>
-                        <button class="btn" type="submit">Adotar</button>
+                        <a href="listarPet" style="border-radius: 5px; background-color: rgb(91, 109, 54);
+                            border: rgb(91, 109, 54); color: #fff; text-decoration: none; padding: 5px;" class="btn" >Voltar</a>
+                        <button class="btn" style="background-color: rgb(91, 109, 54);
+                            border: rgb(91, 109, 54); border-radius: 5px; color: #fff; padding: 6.8px;" class="btn" type="submit">Adotar</button>
                     </div>            
                 </div> 
             </form>

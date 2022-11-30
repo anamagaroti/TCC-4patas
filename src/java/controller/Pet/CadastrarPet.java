@@ -38,7 +38,7 @@ public class CadastrarPet extends HttpServlet {
             request.getRequestDispatcher("imagem").include(request, response);
             String nomeImg = (String) request.getAttribute("nomeImg");
             
-           Pet pet = new Pet(idPet, new Pessoa(idPessoa), nomeImg, nomePet, racaPet, 
+           Pet pet = new Pet(idPet, new Pessoa(idPessoa),  nomeImg, nomePet, racaPet, 
            idadePet, especiePet, coresPet, sexoPet, portePet, observacoes, false, false); //doar é a logica do confirmação de cadastro.
             
            PetDAO petDAO = new PetDAO();
